@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class bequestTarget : TargetRules
+public class BequestTarget : TargetRules
 {
-	public bequestTarget(TargetInfo Target) : base(Target)
+	public BequestTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_5;
-		ExtraModuleNames.Add("bequest");
+		ExtraModuleNames.Add("Bequest");
 	}
 }
