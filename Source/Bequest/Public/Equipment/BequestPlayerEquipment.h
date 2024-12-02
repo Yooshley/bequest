@@ -17,8 +17,4 @@ UCLASS()
 class BEQUEST_API ABequestPlayerEquipment : public ABequestEquipmentBase
 {
 	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TArray<TSubclassOf<UBequestPlayerGameplayAbility>> AbilitySet;
 };

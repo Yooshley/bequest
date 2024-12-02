@@ -4,6 +4,7 @@
 #include "Animations/AnimInstances/BequestCharacterAnimInstance.h"
 
 #include "Characters/BequestCharacterBase.h"
+#include "Components/BequestEquipmentSystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Runtime/AnimGraphRuntime/Public/KismetAnimationLibrary.h"
 
@@ -27,5 +28,5 @@ void UBequestCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaS
 	
 	LocomotionDirection = UKismetAnimationLibrary::CalculateDirection(OwningCharacter->GetVelocity(), OwningCharacter->GetActorRotation());
 
-	bHasEquipment = OwningCharacter->EquippedEquipment != nullptr;
+	EquippedEquipment = OwningCharacter->GetBequestEquipmentSystemComponent()->EquippedEquipmentTag;
 }

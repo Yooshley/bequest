@@ -7,6 +7,7 @@
 #include "AbilitySystemInterface.h"
 #include "BequestCharacterBase.generated.h"
 
+class UBequestEquipmentSystemComponent;
 class ABequestPlayerEquipment;
 class UBequestAbilitySystemComponent;
 
@@ -17,14 +18,7 @@ class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySyst
 
 public:
 	ABequestCharacterBase();
-	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-
-	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Bequest|Equipment")
-	ABequestPlayerEquipment* CurrentEquipment;
-
-	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Bequest|Equipment")
-	ABequestPlayerEquipment* EquippedEquipment;
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;
@@ -32,6 +26,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|AbilitySystem")
 	UBequestAbilitySystemComponent* BequestASC;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|EquipmentSystem")
+	UBequestEquipmentSystemComponent* BequestESC;
+
 public:
 	FORCEINLINE UBequestAbilitySystemComponent* GetBequestAbilitySystemComponent() const { return BequestASC; }
+	FORCEINLINE UBequestEquipmentSystemComponent* GetBequestEquipmentSystemComponent() const { return BequestESC; }
 };

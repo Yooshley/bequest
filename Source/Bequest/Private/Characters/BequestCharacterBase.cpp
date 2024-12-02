@@ -4,6 +4,7 @@
 #include "Characters/BequestCharacterBase.h"
 
 #include "Components/BequestAbilitySystemComponent.h"
+#include "Components/BequestEquipmentSystemComponent.h"
 #include "Net/UnrealNetwork.h"
 
 
@@ -13,14 +14,7 @@ ABequestCharacterBase::ABequestCharacterBase()
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
 	BequestASC = CreateDefaultSubobject<UBequestAbilitySystemComponent>(TEXT("BequestASC"));
-}
-
-void ABequestCharacterBase::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	DOREPLIFETIME(ThisClass, CurrentEquipment);
-	DOREPLIFETIME(ThisClass, EquippedEquipment);
+	BequestESC = CreateDefaultSubobject<UBequestEquipmentSystemComponent>(TEXT("BequestESC"));
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const

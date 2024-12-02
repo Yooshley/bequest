@@ -10,4 +10,6 @@ namespace BequestGameplayTags
 	
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_Equip, "Player.Event.Equip");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Event_Unequip, "Player.Event.Unequip");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Player_Equipment_Greatsword, "Player.Equipment.Greatsword");
 }

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "BequestEquipmentBase.generated.h"
 
@@ -18,14 +19,17 @@ class BEQUEST_API ABequestEquipmentBase : public AActor
 public:	
 	ABequestEquipmentBase();
 	
-	FOnTargetHitDelegate OnWeaponHitTargetBegin;
-	FOnTargetHitDelegate OnWeaponHitTargetEnd;
+	FOnTargetHitDelegate OnEquipmentHitTargetBegin;
+	FOnTargetHitDelegate OnEquipmentHitTargetEnd;
 	
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Equipment")
+	FGameplayTag EquipmentTag;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|Equipment")
 	UStaticMeshComponent* EquipmentMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|Equipment")
 	UBoxComponent* EquipmentCollisionBox;
 
 	UFUNCTION()
@@ -36,5 +40,5 @@ protected:
 
 public:
 	FORCEINLINE UBoxComponent* GetEquipmentCollisionBox() const { return EquipmentCollisionBox; }
-
+	FORCEINLINE FGameplayTag GetEquipmentTag() const { return EquipmentTag; }
 };

@@ -6,6 +6,7 @@
 #include "Characters/BequestCharacterBase.h"
 #include "BequestPlayerCharacter.generated.h"
 
+struct FInputActionValue;
 class UCameraComponent;
 class USpringArmComponent;
 class UInputMappingContext;
