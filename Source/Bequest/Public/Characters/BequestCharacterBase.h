@@ -20,6 +20,12 @@ class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySyst
 public:
 	ABequestCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Animation")
+	void LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Animation")
+	void UnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;
@@ -30,8 +36,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|EquipmentSystem")
 	UBequestEquipmentSystemComponent* BequestESC;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MotionWarping")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|Animation")
     UMotionWarpingComponent* MotionWarpingComponent;
+
+private:
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastLinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
+	
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastUnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 
 public:
 	FORCEINLINE UBequestAbilitySystemComponent* GetBequestAbilitySystemComponent() const { return BequestASC; }
