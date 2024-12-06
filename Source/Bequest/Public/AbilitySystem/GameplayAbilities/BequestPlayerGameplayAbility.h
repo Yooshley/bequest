@@ -8,6 +8,7 @@
 #include "BequestPlayerGameplayAbility.generated.h"
 
 class ABequestPlayerCharacter;
+
 /**
  * 
  */
@@ -30,7 +31,7 @@ public:
 	ETriggerEvent InputReleasedTriggerType = ETriggerEvent::Completed;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	ABequestPlayerCharacter* GetQuestPlayerCharacter() const { return QuestPlayerCharacter.Get(); }
+	ABequestPlayerCharacter* GetBequestPlayerCharacter() const { return QuestPlayerCharacter.Get(); }
 
 protected:
 	TWeakObjectPtr<ABequestPlayerCharacter> QuestPlayerCharacter = nullptr;
@@ -41,6 +42,7 @@ protected:
 	void HandleInputReleasedEvent(const FGameplayAbilitySpecHandle SpecHandle);
 	virtual void OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 
+	
 private:
 	FInputActionValue CachedInputActionValue;
 

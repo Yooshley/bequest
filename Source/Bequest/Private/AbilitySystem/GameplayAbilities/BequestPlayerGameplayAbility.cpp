@@ -7,16 +7,17 @@
 #include "Characters/BequestPlayerCharacter.h"
 #include "Components/BequestAbilitySystemComponent.h"
 
+
+
 void UBequestPlayerGameplayAbility::OnAvatarSet(const FGameplayAbilityActorInfo* ActorInfo,
                                                 const FGameplayAbilitySpec& Spec)
 {
+	Super::OnAvatarSet(ActorInfo, Spec);
 	QuestPlayerCharacter = Cast<ABequestPlayerCharacter>(ActorInfo->AvatarActor);
 	SetupEnhancedInputBindings(ActorInfo, Spec);
-	Super::OnAvatarSet(ActorInfo, Spec);
 }
 
-void UBequestPlayerGameplayAbility::SetupEnhancedInputBindings(const FGameplayAbilityActorInfo* ActorInfo,
-	const FGameplayAbilitySpec& Spec)
+void UBequestPlayerGameplayAbility::SetupEnhancedInputBindings(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(QuestPlayerCharacter->GetController()->InputComponent.Get()))
 	{
@@ -41,6 +42,7 @@ void UBequestPlayerGameplayAbility::HandleInputPressedEvent(const FInputActionVa
 	if (Spec)
 	{
 		Spec->InputPressed = true;
+		
 		if (ActivationInputAction)
 		{
 			CachedInputActionValue = InputValue;
@@ -69,6 +71,7 @@ void UBequestPlayerGameplayAbility::HandleInputReleasedEvent(const FGameplayAbil
 	if (Spec)
 	{
 		Spec->InputPressed = false;
+		
 		if (ActivationInputAction)
 		{
 			CachedInputActionValue = FInputActionValue();

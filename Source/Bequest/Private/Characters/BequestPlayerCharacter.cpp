@@ -4,7 +4,6 @@
 #include "Characters/BequestPlayerCharacter.h"
 
 #include "EnhancedInputSubsystems.h"
-#include "EnhancedInputComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -41,9 +40,8 @@ void ABequestPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* P
 	Subsystem->AddMappingContext(InputMappingContext, 0);
 }
 
-void ABequestPlayerCharacter::Move(const FInputActionValue& InputActionValue)
+void ABequestPlayerCharacter::Move(const FVector2D MovementVector)
 {
-	const FVector2D MovementVector = InputActionValue.Get<FVector2D>();
 	const FRotator MovementRotation(0.f,Controller->GetControlRotation().Yaw,0.f);
 	
 	if (MovementVector.Y != 0.f)

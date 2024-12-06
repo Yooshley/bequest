@@ -10,6 +10,7 @@
 class UBequestEquipmentSystemComponent;
 class ABequestPlayerEquipment;
 class UBequestAbilitySystemComponent;
+class UMotionWarpingComponent;
 
 UCLASS(Abstract, NotBlueprintable)
 class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -28,6 +29,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|EquipmentSystem")
 	UBequestEquipmentSystemComponent* BequestESC;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MotionWarping")
+    UMotionWarpingComponent* MotionWarpingComponent;
 
 public:
 	FORCEINLINE UBequestAbilitySystemComponent* GetBequestAbilitySystemComponent() const { return BequestASC; }

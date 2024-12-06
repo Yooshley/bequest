@@ -10,9 +10,6 @@
  * 
  */
 
-struct FGameplayAbilitySpecHandle;
-class UBequestPlayerGameplayAbility;
-
 UCLASS()
 class BEQUEST_API ABequestPlayerEquipment : public ABequestEquipmentBase
 {

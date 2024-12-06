@@ -5,6 +5,7 @@
 
 #include "GameplayTagContainer.h"
 #include "Components/BoxComponent.h"
+#include "Data/DataAsset_AbilityData.h"
 #include "Equipment/BequestEquipmentBase.h"
 #include "Net/UnrealNetwork.h"
 

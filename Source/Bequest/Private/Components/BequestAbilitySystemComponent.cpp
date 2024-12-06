@@ -3,6 +3,8 @@
 
 #include "Components/BequestAbilitySystemComponent.h"
 
+#include "Data/DataAsset_AbilityData.h"
+
 
 UBequestAbilitySystemComponent::UBequestAbilitySystemComponent()
 {
@@ -16,12 +18,26 @@ void UBequestAbilitySystemComponent::InitializeAbilitySystem(AActor* InOwningAct
 	bIsAbilitySystemInitialized = true;
 
 	InitAbilityActorInfo(InOwningActor, InAvatarActor);
-	if (!AbilitySet.IsEmpty())
+	GrantAbilitiesFromDataAsset(CharacterAbilityData);
+}
+
+void UBequestAbilitySystemComponent::GrantAbilitiesFromDataAsset(TSoftObjectPtr<UDataAsset_AbilityData> AbilityData)
+{
+	if (!AbilityData.IsNull())
 	{
-		for (const TSubclassOf<UGameplayAbility> GameplayAbility : AbilitySet)
+		UDataAsset_AbilityData* LoadedData = AbilityData.LoadSynchronous();
+		if(LoadedData)
 		{
-			FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(GameplayAbility, 1, INDEX_NONE, this);
-			GiveAbility(AbilitySpec);
+			if (TArray<TSubclassOf<UGameplayAbility>> AbilitySet = LoadedData->GetAbilitySet(); !AbilitySet.IsEmpty())
+			{
+				for (const TSubclassOf<UGameplayAbility> GameplayAbility : AbilitySet)
+				{
+					if (FindAbilitySpecFromClass(GameplayAbility)) continue;
+
+					FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(GameplayAbility, 1, INDEX_NONE, this);
+					GiveAbility(AbilitySpec);
+				}
+			}
 		}
 	}
 }
@@ -34,6 +50,11 @@ void UBequestAbilitySystemComponent::GrantAbilities(TArray<TSubclassOf<UGameplay
     {
         if (!Ability) continue;
 
+    	if (FindAbilitySpecFromClass(Ability))
+    	{
+    		continue;
+    	}
+    	
         FGameplayAbilitySpec AbilitySpec(Ability);
         AbilitySpec.SourceObject = GetAvatarActor();
         AbilitySpec.Level = ApplyLevel;
@@ -49,24 +70,12 @@ void UBequestAbilitySystemComponent::RemoveAbilities(TArray<TSubclassOf<UGamepla
 	for (const auto& Ability : Abilities)
 	{
 		if (!Ability) continue;
-		
-		TArray<FGameplayAbilitySpecHandle> HandlesToRemove;
-		for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+
+		FGameplayAbilitySpec* Spec = FindAbilitySpecFromClass(Ability);
+		if (Spec)
 		{
-			if (Spec.Ability && Spec.Ability->GetClass() == Ability)
-			{
-				HandlesToRemove.Add(Spec.Handle);
-			}
+			ClearAbility(Spec->Handle);
 		}
-		for (const FGameplayAbilitySpecHandle& Handle : HandlesToRemove)
-		{
-			ClearAbility(Handle);
-		}
-	}
-	for (const auto Ability : AbilitySet)
-	{
-		if (!Ability) continue;
-		
 	}
 }
 

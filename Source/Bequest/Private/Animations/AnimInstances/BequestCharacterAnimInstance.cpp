@@ -28,5 +28,5 @@ void UBequestCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaS
 	
 	LocomotionDirection = UKismetAnimationLibrary::CalculateDirection(OwningCharacter->GetVelocity(), OwningCharacter->GetActorRotation());
 
-	EquippedEquipment = OwningCharacter->GetBequestEquipmentSystemComponent()->EquippedEquipmentTag;
+	EquippedEquipmentTag = OwningCharacter->GetBequestEquipmentSystemComponent()->EquippedEquipmentTag;
 }

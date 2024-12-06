@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "m:\\repos\\bequest\\plugins\\multiplayersessions\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\multiplayersessions\\permoduleinline.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "m:\\repos\\bequest\\intermediate\\build\\win64\\x64\\bequesteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "m:\\repos\\bequest\\plugins\\multiplayersessions\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\multiplayersessions\\definitions.multiplayersessions.h",
+            "m:\\epic games\\games\\ue_5.5\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

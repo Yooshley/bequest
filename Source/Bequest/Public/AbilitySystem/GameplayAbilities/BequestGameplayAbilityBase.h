@@ -22,7 +22,7 @@ public:
 	bool bActivateAbilityOnGrant = false;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	ABequestCharacterBase* GetQuestCharacter() const { return QuestCharacter.Get(); }
+	ABequestCharacterBase* GetBequestCharacter() const { return QuestCharacter.Get(); }
 
 protected:
 	TWeakObjectPtr<ABequestCharacterBase> QuestCharacter = nullptr;

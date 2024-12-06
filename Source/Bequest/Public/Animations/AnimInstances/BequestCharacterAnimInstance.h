@@ -38,5 +38,5 @@ protected:
 	float LocomotionDirection;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Equipment")
-	FGameplayTag EquippedEquipment;
+	FGameplayTag EquippedEquipmentTag;
 };

@@ -6,7 +6,6 @@
 #include "Characters/BequestCharacterBase.h"
 #include "BequestPlayerCharacter.generated.h"
 
-struct FInputActionValue;
 class UCameraComponent;
 class USpringArmComponent;
 class UInputMappingContext;
@@ -38,6 +37,6 @@ private:
 	UInputMappingContext* InputMappingContext;
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
-	void Move(const FInputActionValue& InputActionValue);
+	void Move(const FVector2D MovementVector);
 #pragma endregion 
 };

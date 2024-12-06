@@ -5,7 +5,7 @@
 
 #include "Components/BequestAbilitySystemComponent.h"
 #include "Components/BequestEquipmentSystemComponent.h"
-#include "Net/UnrealNetwork.h"
+#include "MotionWarpingComponent.h"
 
 
 ABequestCharacterBase::ABequestCharacterBase()
@@ -15,6 +15,8 @@ ABequestCharacterBase::ABequestCharacterBase()
 
 	BequestASC = CreateDefaultSubobject<UBequestAbilitySystemComponent>(TEXT("BequestASC"));
 	BequestESC = CreateDefaultSubobject<UBequestEquipmentSystemComponent>(TEXT("BequestESC"));
+	
+	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const
