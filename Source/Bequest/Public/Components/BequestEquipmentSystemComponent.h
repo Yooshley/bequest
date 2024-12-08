@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Components/PawnExtenstionComponentBase.h"
+#include "Equipment/BequestEquipmentBase.h"
 #include "BequestEquipmentSystemComponent.generated.h"
 
 class ABequestEquipmentBase;
@@ -43,8 +44,17 @@ public:
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Bequest|EquipmentSystem")
 	FGameplayTag EquippedEquipmentTag;
 
-	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Bequest|EquipmentSystem")
-	int32 ComboCount = 1;
+	UPROPERTY(BlueprintReadWrite, Category = "Bequest|EquipmentSystem")
+	int32 MontageIndex = 1;
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
+	void IncrementMontage();
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
+	UAnimMontage* GetEquipmentMontage();
+	
+	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
+	TSubclassOf<UBequestCharacterLinkedAnimLayer> GetEquipmentAnimLayer();
 
 protected:
 	TArray<TSubclassOf<AActor>> EquipmentOverlappedActors;

@@ -20,6 +20,7 @@ void UBequestEquipmentSystemComponent::GetLifetimeReplicatedProps(TArray<class F
 
 	DOREPLIFETIME(ThisClass, CarriedEquipment);
 	DOREPLIFETIME(ThisClass, EquippedEquipmentTag);
+	//DOREPLIFETIME(ThisClass, MontageIndex);
 }
 
 void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* Equipment, bool bRegisterEquipped)
@@ -81,4 +82,23 @@ void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorBegin(AActor* Hi
 
 void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorEnd(AActor* HitActor)
 {
+}
+
+void UBequestEquipmentSystemComponent::IncrementMontage()
+{
+	MontageIndex++;
+	if (MontageIndex > GetEquippedEquipment()->EquipmentData.EquipmentMontageMap.Num())
+	{
+		MontageIndex = 1;
+	}
+}
+
+UAnimMontage* UBequestEquipmentSystemComponent::GetEquipmentMontage()
+{
+	return GetEquippedEquipment()->EquipmentData.EquipmentMontageMap[MontageIndex];
+}
+
+TSubclassOf<UBequestCharacterLinkedAnimLayer> UBequestEquipmentSystemComponent::GetEquipmentAnimLayer()
+{
+	return GetEquippedEquipment()->EquipmentData.EquipmentAnimLayerToLink;
 }

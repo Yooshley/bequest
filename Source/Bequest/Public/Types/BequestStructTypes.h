@@ -18,6 +18,9 @@ struct FBequestEquipmentData
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UBequestCharacterLinkedAnimLayer> EquipmentAnimLayerToLink;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TMap<int32, UAnimMontage*> EquipmentMontageMap;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSoftObjectPtr<UDataAsset_AbilityData> EquipmentAbilityData;
