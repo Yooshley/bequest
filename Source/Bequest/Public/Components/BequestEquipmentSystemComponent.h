@@ -43,6 +43,9 @@ public:
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Bequest|EquipmentSystem")
 	FGameplayTag EquippedEquipmentTag;
 
+	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Bequest|EquipmentSystem")
+	int32 ComboCount = 1;
+
 protected:
 	TArray<TSubclassOf<AActor>> EquipmentOverlappedActors;
 };

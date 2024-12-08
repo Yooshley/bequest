@@ -72,6 +72,6 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"M:\Repos\bequest\Plugins\MultiplayerSessions\Binaries\Win64\UnrealEditor-MultiplayerSessions-0001.dll"
-/PDB:"M:\Repos\bequest\Plugins\MultiplayerSessions\Binaries\Win64\UnrealEditor-MultiplayerSessions-0001.pdb"
+/OUT:"M:\Repos\bequest\Plugins\MultiplayerSessions\Binaries\Win64\UnrealEditor-MultiplayerSessions-0003.dll"
+/PDB:"M:\Repos\bequest\Plugins\MultiplayerSessions\Binaries\Win64\UnrealEditor-MultiplayerSessions-0003.pdb"
 /ignore:4078

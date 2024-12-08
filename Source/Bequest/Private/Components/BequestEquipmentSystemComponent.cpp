@@ -25,7 +25,7 @@ void UBequestEquipmentSystemComponent::GetLifetimeReplicatedProps(TArray<class F
 void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* Equipment, bool bRegisterEquipped)
 {
 	check(Equipment);
-	check(Equipment->GetEquipmentTag().IsValid()); 
+	check(Equipment->GetEquipmentData().EquipmentTag.IsValid()); 
 
 	CarriedEquipment.Emplace(Equipment);
 
@@ -34,7 +34,7 @@ void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* 
 	
 	if(bRegisterEquipped)
 	{
-		EquippedEquipmentTag = Equipment->GetEquipmentTag();
+		EquippedEquipmentTag = Equipment->GetEquipmentData().EquipmentTag;
 	}
 }
 
@@ -42,7 +42,7 @@ ABequestEquipmentBase* UBequestEquipmentSystemComponent::GetCarriedEquipmentByTa
 {
 	for (ABequestEquipmentBase* Equipment : CarriedEquipment)
 	{
-		if (Equipment && Equipment->GetEquipmentTag() == EquipmentTag)
+		if (Equipment && Equipment->GetEquipmentData().EquipmentTag == EquipmentTag)
 		{
 			return Equipment;
 		}
