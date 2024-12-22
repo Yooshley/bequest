@@ -3,6 +3,7 @@
 
 #include "Components/BequestAbilitySystemComponent.h"
 
+#include "Data/AttributeSetDataTableRow.h"
 #include "Data/DataAsset_AbilityData.h"
 
 
@@ -18,28 +19,59 @@ void UBequestAbilitySystemComponent::InitializeAbilitySystem(AActor* InOwningAct
 	bIsAbilitySystemInitialized = true;
 
 	InitAbilityActorInfo(InOwningActor, InAvatarActor);
-	GrantAbilitiesFromDataAsset(CharacterAbilityData);
+	LoadAbilityData(AbilitySystemData, AttributeDataTable);
 }
 
-void UBequestAbilitySystemComponent::GrantAbilitiesFromDataAsset(TSoftObjectPtr<UDataAsset_AbilityData> AbilityData)
+void UBequestAbilitySystemComponent::LoadAbilityData(TSoftObjectPtr<UDataAsset_AbilitySystem> InAbilityDataAsset, UDataTable* InAttributeDataTable)
 {
-	if (!AbilityData.IsNull())
+	if (GetOwnerActor()->HasAuthority())
 	{
-		UDataAsset_AbilityData* LoadedData = AbilityData.LoadSynchronous();
+		if (InAbilityDataAsset.IsNull()) return;
+		UDataAsset_AbilitySystem* LoadedData = InAbilityDataAsset.LoadSynchronous();
 		if(LoadedData)
 		{
-			if (TArray<TSubclassOf<UGameplayAbility>> AbilitySet = LoadedData->GetAbilitySet(); !AbilitySet.IsEmpty())
+			if (TArray<TSubclassOf<UAttributeSet>> Attributes = LoadedData->GetAttributes(); !Attributes.IsEmpty())
 			{
-				for (const TSubclassOf<UGameplayAbility> GameplayAbility : AbilitySet)
+				for (const TSubclassOf<UAttributeSet> AttributeSetClass : Attributes)
 				{
-					if (FindAbilitySpecFromClass(GameplayAbility)) continue;
+					GetOrCreateAttributeSet(AttributeSetClass);
+				}
+			}
 
-					FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(GameplayAbility, 1, INDEX_NONE, this);
+			checkf(InAttributeDataTable, TEXT("Attribute Data Table not assigned."));
+			TArray<FName> RowNames = InAttributeDataTable->GetRowNames();
+			for (const FName& RowName : RowNames)
+			{
+				FAttributeSetDataTableRow* Row = InAttributeDataTable->FindRow<FAttributeSetDataTableRow>(RowName, TEXT("AttributeSetup"));
+				if (Row)
+				{
+					FGameplayAttribute Attribute = Row->Attribute;
+					float AttributeValue = Row->AttributeValue;
+
+					if (HasAttributeSetForAttribute(Attribute))
+					{
+						SetNumericAttributeBase(Attribute, AttributeValue);
+					}
+				}
+			}
+		
+			if (TArray<TSubclassOf<UGameplayAbility>> Abilities = LoadedData->GetAbilities(); !Abilities.IsEmpty())
+			{
+				for (const TSubclassOf<UGameplayAbility> GameplayAbilityClass : Abilities)
+				{
+					if (FindAbilitySpecFromClass(GameplayAbilityClass)) continue;
+
+					FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(GameplayAbilityClass, 1, INDEX_NONE, this);
 					GiveAbility(AbilitySpec);
 				}
 			}
 		}
 	}
+}
+
+const UAttributeSet* UBequestAbilitySystemComponent::GetOrCreateAttributeSet(const TSubclassOf<UAttributeSet>& AttributeSet)
+{
+	return GetOrCreateAttributeSubobject(AttributeSet);
 }
 
 void UBequestAbilitySystemComponent::GrantAbilities(TArray<TSubclassOf<UGameplayAbility>> Abilities, int32 ApplyLevel)

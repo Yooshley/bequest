@@ -3,9 +3,11 @@
 
 #include "Characters/BequestCharacterBase.h"
 
+#include "BequestDebugHelper.h"
 #include "Components/BequestAbilitySystemComponent.h"
 #include "Components/BequestEquipmentSystemComponent.h"
 #include "MotionWarpingComponent.h"
+#include "Components/WidgetComponent.h"
 
 
 ABequestCharacterBase::ABequestCharacterBase()
@@ -19,6 +21,9 @@ ABequestCharacterBase::ABequestCharacterBase()
 	BequestESC = CreateDefaultSubobject<UBequestEquipmentSystemComponent>(TEXT("BequestESC"));
 	
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
+	
+	OverheadWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("OverheadWidget"));
+	OverheadWidget->SetupAttachment(GetMesh());
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const
@@ -55,9 +60,30 @@ void ABequestCharacterBase::MulticastUnlinkAnimClassLayer_Implementation(TSubcla
 void ABequestCharacterBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-
 	if(BequestASC)
 	{
 		BequestASC->InitializeAbilitySystem(this, this);
+		PostInitializeAbilitySystem();
+		//InitializeAbilitySystemWidget();
 	}
 }
+
+// void ABequestCharacterBase::InitializeAbilitySystemWidget() const
+// {
+// 	if (!AbilitySystemWidgetClass || !AbilitySystemWidget) return;
+//
+// 	UBequestAbilitySystemWidget* WidgetInstance = CreateWidget<UBequestAbilitySystemWidget>(AbilitySystemWidgetClass);
+// 	if (WidgetInstance)
+// 	{
+// 		AbilitySystemWidget->SetWidget(WidgetInstance);
+// 		if (IsLocallyControlled())
+// 		{
+// 			AbilitySystemWidget->SetRelativeLocation(FVector(0.f, 0.f, -50.f));
+// 		}
+// 		else
+// 		{
+// 			AbilitySystemWidget->SetRelativeLocation(FVector(0.f, 0.f, 200.f));
+// 		}
+// 		WidgetInstance->InitializeAbilitySystemWidget(GetAbilitySystemComponent());
+// 	}
+// }

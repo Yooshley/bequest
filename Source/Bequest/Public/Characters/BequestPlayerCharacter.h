@@ -22,6 +22,7 @@ public:
 
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void OnRep_PlayerState() override;
 	
 private:
 #pragma region Components
@@ -38,5 +39,5 @@ private:
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
 	void Move(const FVector2D MovementVector);
-#pragma endregion 
+#pragma endregion
 };

@@ -3,8 +3,10 @@
 
 #include "Characters/BequestPlayerCharacter.h"
 
+#include "BequestDebugHelper.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
+#include "Components/BequestAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -54,5 +56,16 @@ void ABequestPlayerCharacter::Move(const FVector2D MovementVector)
 	{
 		const FVector RightDirection = MovementRotation.RotateVector(FVector::RightVector);
 		AddMovementInput(RightDirection,MovementVector.X);
+	}
+}
+
+void ABequestPlayerCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	if(BequestASC)
+	{
+		BequestASC->InitializeAbilitySystem(this, this);
+		PostInitializeAbilitySystem();
+		//InitializeAbilitySystemWidget();
 	}
 }

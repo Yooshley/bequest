@@ -5,6 +5,9 @@
 
 namespace BequestGameplayTags
 {
+	UE_DEFINE_GAMEPLAY_TAG(Player_Attribute_Guard, "Player.Attribute.Guard");
+	UE_DEFINE_GAMEPLAY_TAG(Player_Attribute_Vital, "Player.Attribute.Vital");
+	
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Move, "Player.Ability.Move");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Equip, "Player.Ability.Equip");
 	UE_DEFINE_GAMEPLAY_TAG(Player_Ability_Charge, "Player.Ability.Charge");

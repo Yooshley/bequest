@@ -7,7 +7,7 @@
 #include "Types/BequestStructTypes.h"
 #include "BequestEquipmentBase.generated.h"
 
-class UDataAsset_AbilityData;
+class UDataAsset_AbilitySystem;
 class UBoxComponent;
 
 DECLARE_DELEGATE_OneParam(FOnTargetHitDelegate, AActor*)

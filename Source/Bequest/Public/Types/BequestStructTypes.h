@@ -5,7 +5,7 @@
 
 #include "BequestStructTypes.generated.h"
 
-class UDataAsset_AbilityData;
+class UDataAsset_AbilitySystem;
 class UBequestCharacterLinkedAnimLayer;
 
 USTRUCT(BlueprintType)
@@ -21,7 +21,10 @@ struct FBequestEquipmentData
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TMap<int32, UAnimMontage*> EquipmentMontageMap;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSoftObjectPtr<UDataAsset_AbilitySystem> EquipmentAbilityData;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSoftObjectPtr<UDataAsset_AbilityData> EquipmentAbilityData;
+	UDataTable* EquipmentAttributeDataTable;
 };

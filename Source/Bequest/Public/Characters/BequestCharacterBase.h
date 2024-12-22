@@ -7,6 +7,7 @@
 #include "AbilitySystemInterface.h"
 #include "BequestCharacterBase.generated.h"
 
+class UBequestAbilitySystemWidget;
 class UBequestEquipmentSystemComponent;
 class ABequestPlayerEquipment;
 class UBequestAbilitySystemComponent;
@@ -20,6 +21,9 @@ class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySyst
 public:
 	ABequestCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void PostInitializeAbilitySystem();
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Animation")
 	void LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
@@ -29,6 +33,8 @@ public:
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;
+
+	//void InitializeAbilitySystemWidget() const;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|AbilitySystem")
 	UBequestAbilitySystemComponent* BequestASC;
@@ -36,8 +42,14 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|EquipmentSystem")
 	UBequestEquipmentSystemComponent* BequestESC;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|Animation")
+	UPROPERTY(BlueprintReadOnly, Category = "Bequest|Animation")
     UMotionWarpingComponent* MotionWarpingComponent;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    class UWidgetComponent* OverheadWidget;
+
+	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Bequest|Widget", meta = (AllowPrivateAccess = "true"))
+	// UBequestAbilitySystemWidget* AbilitySystemWidgetClass;
 
 private:
 	UFUNCTION(NetMulticast, Reliable)
@@ -47,6 +59,7 @@ private:
 	void MulticastUnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 
 public:
+	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
 	FORCEINLINE UBequestAbilitySystemComponent* GetBequestAbilitySystemComponent() const { return BequestASC; }
 	FORCEINLINE UBequestEquipmentSystemComponent* GetBequestEquipmentSystemComponent() const { return BequestESC; }
 };

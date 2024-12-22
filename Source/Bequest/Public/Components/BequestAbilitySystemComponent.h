@@ -10,7 +10,7 @@
  * 
  */
 
-class UDataAsset_AbilityData;
+class UDataAsset_AbilitySystem;
 
 UCLASS()
 class BEQUEST_API UBequestAbilitySystemComponent : public UAbilitySystemComponent
@@ -20,14 +20,17 @@ class BEQUEST_API UBequestAbilitySystemComponent : public UAbilitySystemComponen
 public:
 	UBequestAbilitySystemComponent();
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Bequest|AbilitySystem")
+	UDataTable* AttributeDataTable;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bequest|AbilitySystem")
-	TSoftObjectPtr<UDataAsset_AbilityData> CharacterAbilityData;
-
-	UFUNCTION(BlueprintCallable, Category="Bequest|AbilitySystem")
+	TSoftObjectPtr<UDataAsset_AbilitySystem> AbilitySystemData;
+	
 	void InitializeAbilitySystem(AActor* InOwningActor, AActor* InAvatarActor);
-
+	const UAttributeSet* GetOrCreateAttributeSet(const TSubclassOf<UAttributeSet>& AttributeSet);
+	
 	UFUNCTION(BlueprintCallable, Category="Bequest|AbilitySystem")
-	void GrantAbilitiesFromDataAsset(TSoftObjectPtr<UDataAsset_AbilityData> AbilityData);
+	void LoadAbilityData(TSoftObjectPtr<UDataAsset_AbilitySystem> InAbilityDataAsset, UDataTable* InAttributeDataTable);
 	
 	UFUNCTION(BlueprintCallable, Category="Bequest|AbilitySystem", meta=(ApplyLevel = "1"))
 	void GrantAbilities(TArray<TSubclassOf<UGameplayAbility>> Abilities, int32 ApplyLevel);
@@ -39,5 +42,5 @@ public:
 	bool TryActivateAbilityByTag(FGameplayTag Tag);
 	
 protected:
-    	bool bIsAbilitySystemInitialized = false;
+	bool bIsAbilitySystemInitialized = false;
 };
