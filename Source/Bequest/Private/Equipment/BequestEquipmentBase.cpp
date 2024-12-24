@@ -3,6 +3,7 @@
 
 #include "Equipment/BequestEquipmentBase.h"
 
+#include "BequestFunctionLibrary.h"
 #include "Components/BoxComponent.h"
 
 
@@ -26,10 +27,38 @@ ABequestEquipmentBase::ABequestEquipmentBase()
 void ABequestEquipmentBase::OnCollisionBoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	APawn* OwnerPawn = GetInstigator<APawn>();
+	checkf(OwnerPawn, TEXT("Equipment Owning Pawn not assigned."));
+	
+	if (APawn* OtherPawn = Cast<APawn>(OtherActor))
+	{
+		if (OwnerPawn != OtherPawn)
+		{
+			OnEquipmentHitTargetBegin.ExecuteIfBound(OtherActor);
+		}
+		// if (UBequestFunctionLibrary::IsTargetPawnHostile(OwnerPawn, OtherPawn))
+		// {
+		// 	OnEquipmentHitTargetBegin.ExecuteIfBound(OtherActor);
+		// }
+	}
 }
 
 void ABequestEquipmentBase::OnCollisionBoxEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	APawn* OwnerPawn = GetInstigator<APawn>();
+	checkf(OwnerPawn, TEXT("Weapon Owning Pawn not assigned."));
+
+	if (APawn* OtherPawn = Cast<APawn>(OtherActor))
+	{
+		if (OwnerPawn != OtherPawn)
+		{
+			OnEquipmentHitTargetEnd.ExecuteIfBound(OtherActor);
+		}
+		// if (UBequestFunctionLibrary::IsTargetPawnHostile(OwnerPawn, OtherPawn))
+		// {
+		// 	OnEquipmentHitTargetEnd.ExecuteIfBound(OtherActor);
+		// }
+	}
 }
 

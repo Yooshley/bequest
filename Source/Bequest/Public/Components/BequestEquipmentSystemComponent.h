@@ -57,5 +57,5 @@ public:
 	TSubclassOf<UBequestCharacterLinkedAnimLayer> GetEquipmentAnimLayer();
 
 protected:
-	TArray<TSubclassOf<AActor>> EquipmentOverlappedActors;
+	TArray<AActor*> EquipmentOverlappedActors;
 };

@@ -6,6 +6,9 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "BequestFunctionLibrary.generated.h"
 
+struct FGameplayEventData;
+enum class EBequestValidType : uint8;
+class UBequestEquipmentSystemComponent;
 enum class EBequestConfirmType : uint8;
 struct FGameplayTag;
 class UBequestAbilitySystemComponent;
@@ -32,4 +35,24 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary", meta=(ExpandEnumAsExecs = "ConfirmType"))
 	static void CheckTagOnActor(AActor* Actor, FGameplayTag Tag, EBequestConfirmType& ConfirmType);
+
+	static UBequestEquipmentSystemComponent* NativeGetEquipmentSystemComponentFromActor(AActor* Actor);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary", meta=(ExpandEnumAsExecs = "ValidType"))
+	static UBequestEquipmentSystemComponent* GetEquipmentSystemComponentFromActor(AActor* Actor, EBequestValidType& ValidType); 
+
+	UFUNCTION(BlueprintPure, Category = "Bequest|FunctionLibrary")
+	static bool IsTargetPawnHostile(APawn* QueryPawn, APawn* TargetPawn);
+
+	UFUNCTION(BlueprintPure, Category = "Bequest|FunctionLibrary")
+	static FGameplayTag ComputeHitReactDirectionTag(AActor* Instigator, AActor* HitActor, float& AngleDifference);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
+	void SendGameplayEventToActorReplicated(AActor* SourceActor, AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
+	
+	UFUNCTION(Server, Unreliable)
+	void Server_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
+	
+	UFUNCTION(NetMulticast, Unreliable)
+	void Multicast_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
 };

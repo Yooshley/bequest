@@ -22,13 +22,18 @@ ABequestCharacterBase::ABequestCharacterBase()
 	
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
 	
-	OverheadWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("OverheadWidget"));
-	OverheadWidget->SetupAttachment(GetMesh());
+	AbilitySystemWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("AbilitySystemWidget"));
+	AbilitySystemWidget->SetupAttachment(GetMesh());
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const
 {
-	return GetBequestAbilitySystemComponent();
+	return BequestASC;
+}
+
+UBequestEquipmentSystemComponent* ABequestCharacterBase::GetEquipmentSystemComponent() const
+{
+	return BequestESC;
 }
 
 void ABequestCharacterBase::LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass)
@@ -64,26 +69,5 @@ void ABequestCharacterBase::PossessedBy(AController* NewController)
 	{
 		BequestASC->InitializeAbilitySystem(this, this);
 		PostInitializeAbilitySystem();
-		//InitializeAbilitySystemWidget();
 	}
 }
-
-// void ABequestCharacterBase::InitializeAbilitySystemWidget() const
-// {
-// 	if (!AbilitySystemWidgetClass || !AbilitySystemWidget) return;
-//
-// 	UBequestAbilitySystemWidget* WidgetInstance = CreateWidget<UBequestAbilitySystemWidget>(AbilitySystemWidgetClass);
-// 	if (WidgetInstance)
-// 	{
-// 		AbilitySystemWidget->SetWidget(WidgetInstance);
-// 		if (IsLocallyControlled())
-// 		{
-// 			AbilitySystemWidget->SetRelativeLocation(FVector(0.f, 0.f, -50.f));
-// 		}
-// 		else
-// 		{
-// 			AbilitySystemWidget->SetRelativeLocation(FVector(0.f, 0.f, 200.f));
-// 		}
-// 		WidgetInstance->InitializeAbilitySystemWidget(GetAbilitySystemComponent());
-// 	}
-// }

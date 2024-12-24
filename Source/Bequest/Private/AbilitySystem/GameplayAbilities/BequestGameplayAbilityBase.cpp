@@ -3,12 +3,16 @@
 
 #include "AbilitySystem/GameplayAbilities/BequestGameplayAbilityBase.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "BequestGameplayTags.h"
 #include "Characters/BequestCharacterBase.h"
 #include "Components/BequestAbilitySystemComponent.h"
+#include "Components/BequestEquipmentSystemComponent.h"
+#include "Types/BequestEnumTypes.h"
 
 UBequestGameplayAbilityBase::UBequestGameplayAbilityBase()
 {
-	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;	
+	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 }
 
 void UBequestGameplayAbilityBase::OnAvatarSet(const FGameplayAbilityActorInfo* ActorInfo,
@@ -23,3 +27,74 @@ void UBequestGameplayAbilityBase::OnAvatarSet(const FGameplayAbilityActorInfo* A
 		QuestCharacter->GetBequestAbilitySystemComponent()->TryActivateAbility(Spec.Handle);
 	}
 }
+
+UBequestEquipmentSystemComponent* UBequestGameplayAbilityBase::GetEquipmentSystemComponent() const
+{
+	return GetAvatarActorFromActorInfo()->FindComponentByClass<UBequestEquipmentSystemComponent>();
+}
+
+UBequestAbilitySystemComponent* UBequestGameplayAbilityBase::GetAbilitySystemComponent() const
+{
+	return Cast<UBequestAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
+}
+
+FGameplayEffectSpecHandle UBequestGameplayAbilityBase::GetDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> Effect,
+	float Damage, FGameplayTag TypeTag)
+{
+	check(Effect);
+	
+	FGameplayEffectContextHandle EffectContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	EffectContextHandle.SetAbility(this);
+	EffectContextHandle.AddSourceObject(GetAvatarActorFromActorInfo());
+	EffectContextHandle.AddInstigator(GetAvatarActorFromActorInfo(), GetAvatarActorFromActorInfo());
+	
+	FGameplayEffectSpecHandle EffectSpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(Effect, GetAbilityLevel(), EffectContextHandle);
+	EffectSpecHandle.Data->SetSetByCallerMagnitude(BequestGameplayTags::Shared_SetByCaller_Damage, Damage);
+	
+	return EffectSpecHandle;
+}
+
+FActiveGameplayEffectHandle UBequestGameplayAbilityBase::NativeApplyEffectSpecHandleToTarget(AActor* TargetActor,
+                                                                                             const FGameplayEffectSpecHandle& SpecHandle)
+{
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	check(TargetASC && SpecHandle.IsValid());
+	
+	return GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data,TargetASC);
+}
+
+FActiveGameplayEffectHandle UBequestGameplayAbilityBase::ApplyEffectSpecHandleToTarget(AActor* TargetActor,
+	const FGameplayEffectSpecHandle& SpecHandle, EBequestResultType& SuccessType)
+{
+	FActiveGameplayEffectHandle ActiveGameplayEffectHandle = NativeApplyEffectSpecHandleToTarget(TargetActor, SpecHandle);
+	SuccessType = ActiveGameplayEffectHandle.WasSuccessfullyApplied() ? EBequestResultType::Success : EBequestResultType::Failure;
+	return ActiveGameplayEffectHandle;
+}
+
+// void UBequestGameplayAbilityBase::SendGameplayEventToActorReplicated(AActor* TargetActor, FGameplayTag Tag,
+// 	FGameplayEventData EventData)
+// {
+// 	if (GetOwningActorFromActorInfo()->HasAuthority())
+// 	{
+// 		Multicast_SendGameplayEventToActor(TargetActor, Tag, EventData);
+// 	}
+// 	else
+// 	{
+// 		Server_SendGameplayEventToActor(TargetActor, Tag, EventData);
+// 	}
+// }
+//
+// void UBequestGameplayAbilityBase::Server_SendGameplayEventToActor_Implementation(AActor* TargetActor, FGameplayTag Tag,
+//                                                                                  FGameplayEventData EventData)
+// {
+// 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
+// }
+//
+// void UBequestGameplayAbilityBase::Multicast_SendGameplayEventToActor_Implementation(AActor* TargetActor,
+//                                                                                     FGameplayTag Tag, FGameplayEventData EventData)
+// {
+// 	if (GetOwningActorFromActorInfo()->HasAuthority())
+// 	{
+// 		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
+// 	}
+// }

@@ -3,7 +3,10 @@
 
 #include "Components/BequestEquipmentSystemComponent.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "BequestGameplayTags.h"
 #include "GameplayTagContainer.h"
+#include "Abilities/GameplayAbilityTypes.h"
 #include "Components/BoxComponent.h"
 #include "Data/DataAsset_AbilityData.h"
 #include "Equipment/BequestEquipmentBase.h"
@@ -78,6 +81,14 @@ void UBequestEquipmentSystemComponent::ToggleEquipmentCollision(bool bShouldEnab
 
 void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorBegin(AActor* HitActor)
 {
+	if (EquipmentOverlappedActors.Contains(HitActor)) return;
+	EquipmentOverlappedActors.AddUnique(HitActor);
+
+	FGameplayEventData Data;
+	Data.Instigator = GetOwningPawn();
+	Data.Target = HitActor;
+	
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(),BequestGameplayTags::Shared_Event_Hit,Data);
 }
 
 void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorEnd(AActor* HitActor)

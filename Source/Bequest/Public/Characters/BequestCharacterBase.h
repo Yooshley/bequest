@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Interfaces/EquipmentSystemInterface.h"
 #include "BequestCharacterBase.generated.h"
 
 class UBequestAbilitySystemWidget;
@@ -14,13 +15,14 @@ class UBequestAbilitySystemComponent;
 class UMotionWarpingComponent;
 
 UCLASS(Abstract, NotBlueprintable)
-class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySystemInterface
+class BEQUEST_API ABequestCharacterBase : public ACharacter, public IAbilitySystemInterface, public IEquipmentSystemInterface
 {
 	GENERATED_BODY()
 
 public:
 	ABequestCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UBequestEquipmentSystemComponent* GetEquipmentSystemComponent() const override;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PostInitializeAbilitySystem();
@@ -33,8 +35,6 @@ public:
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;
-
-	//void InitializeAbilitySystemWidget() const;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|AbilitySystem")
 	UBequestAbilitySystemComponent* BequestASC;
@@ -46,10 +46,7 @@ protected:
     UMotionWarpingComponent* MotionWarpingComponent;
     
     UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-    class UWidgetComponent* OverheadWidget;
-
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Bequest|Widget", meta = (AllowPrivateAccess = "true"))
-	// UBequestAbilitySystemWidget* AbilitySystemWidgetClass;
+    class UWidgetComponent* AbilitySystemWidget;
 
 private:
 	UFUNCTION(NetMulticast, Reliable)
