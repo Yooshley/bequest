@@ -46,12 +46,9 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Ability", meta = (ExpandEnumAsExecs = "SuccessType"))
 	FActiveGameplayEffectHandle ApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& SpecHandle, EBequestResultType& SuccessType);
 
-	// UFUNCTION(BlueprintCallable)
-	// void SendGameplayEventToActorReplicated(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
-	//
-	// UFUNCTION(Server, Unreliable)
-	// void Server_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
-	//
-	// UFUNCTION(NetMulticast, Unreliable)
-	// void Multicast_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Ability")
+	void SendGameplayEventToActor(AActor* Actor, FGameplayTag EventTag, FGameplayEventData Payload);
+	
+	UFUNCTION(Server, Reliable)
+	void Server_SendGameplayEventToActor(AActor* Actor, FGameplayTag EventTag, FGameplayEventData Payload);
 };

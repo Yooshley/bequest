@@ -40,6 +40,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category="Bequest|AbilitySystem")
 	bool TryActivateAbilityByTag(FGameplayTag Tag);
+
+	TMap<FGameplayTag, int32> TagReferenceCount;
 	
 protected:
 	bool bIsAbilitySystemInitialized = false;

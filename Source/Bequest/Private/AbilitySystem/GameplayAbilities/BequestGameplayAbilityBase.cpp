@@ -71,30 +71,20 @@ FActiveGameplayEffectHandle UBequestGameplayAbilityBase::ApplyEffectSpecHandleTo
 	return ActiveGameplayEffectHandle;
 }
 
-// void UBequestGameplayAbilityBase::SendGameplayEventToActorReplicated(AActor* TargetActor, FGameplayTag Tag,
-// 	FGameplayEventData EventData)
-// {
-// 	if (GetOwningActorFromActorInfo()->HasAuthority())
-// 	{
-// 		Multicast_SendGameplayEventToActor(TargetActor, Tag, EventData);
-// 	}
-// 	else
-// 	{
-// 		Server_SendGameplayEventToActor(TargetActor, Tag, EventData);
-// 	}
-// }
-//
-// void UBequestGameplayAbilityBase::Server_SendGameplayEventToActor_Implementation(AActor* TargetActor, FGameplayTag Tag,
-//                                                                                  FGameplayEventData EventData)
-// {
-// 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
-// }
-//
-// void UBequestGameplayAbilityBase::Multicast_SendGameplayEventToActor_Implementation(AActor* TargetActor,
-//                                                                                     FGameplayTag Tag, FGameplayEventData EventData)
-// {
-// 	if (GetOwningActorFromActorInfo()->HasAuthority())
-// 	{
-// 		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
-// 	}
-// }
+void UBequestGameplayAbilityBase::SendGameplayEventToActor(AActor* Actor, FGameplayTag EventTag,
+	FGameplayEventData Payload)
+{
+	if (IsLocallyControlled())
+	{
+		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Actor, EventTag, Payload);
+	}
+	else
+	{
+		Server_SendGameplayEventToActor(Actor, EventTag, Payload);
+	}
+}
+
+void UBequestGameplayAbilityBase::Server_SendGameplayEventToActor_Implementation(AActor* Actor, FGameplayTag EventTag, FGameplayEventData Payload)
+{
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Actor, EventTag, Payload);
+}

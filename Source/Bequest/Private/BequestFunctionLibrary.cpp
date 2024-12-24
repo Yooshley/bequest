@@ -18,8 +18,38 @@ UBequestAbilitySystemComponent* UBequestFunctionLibrary::NativeGetBequestASCFrom
 	return CastChecked<UBequestAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor));
 }
 
-void UBequestFunctionLibrary::AddGameplayTagToActor(AActor* Actor, FGameplayTag Tag)
+void UBequestFunctionLibrary::AddTagWithReferenceCounting(AActor* Actor, FGameplayTag Tag)
 {
+	if (!Tag.IsValid()) return;
+	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
+
+	int32& Count = BequestASC->TagReferenceCount.FindOrAdd(Tag);
+	Count++;
+	if (Count == 1)
+	{
+		AddGameplayTag(Actor, Tag);
+	}
+}
+
+void UBequestFunctionLibrary::RemoveTagWithReferenceCounting(AActor* Actor, FGameplayTag Tag)
+{
+	if (!Tag.IsValid()) return;
+	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
+
+	int32* CountPtr = BequestASC->TagReferenceCount.Find(Tag);
+	if (CountPtr && *CountPtr > 0)
+	{
+		(*CountPtr)--;
+		if (*CountPtr == 0)
+		{
+			RemoveGameplayTag(Actor, Tag);
+		}
+	}
+}
+
+void UBequestFunctionLibrary::AddGameplayTag(AActor* Actor, FGameplayTag Tag)
+{
+	if (!Tag.IsValid()) return;
 	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
 	if(!BequestASC->HasMatchingGameplayTag(Tag))
 	{
@@ -28,8 +58,9 @@ void UBequestFunctionLibrary::AddGameplayTagToActor(AActor* Actor, FGameplayTag 
 	}
 }
 
-void UBequestFunctionLibrary::RemoveGameplayTagFromActor(AActor* Actor, FGameplayTag Tag)
+void UBequestFunctionLibrary::RemoveGameplayTag(AActor* Actor, FGameplayTag Tag)
 {
+	if (!Tag.IsValid()) return;
 	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
 	if(BequestASC->HasMatchingGameplayTag(Tag))
 	{
@@ -103,23 +134,23 @@ FGameplayTag UBequestFunctionLibrary::ComputeHitReactDirectionTag(AActor* Instig
 
 	if (AngleDifference >= -45.f && AngleDifference <= 45.f)
 	{
-		return BequestGameplayTags::Shared_Status_Hurt_Front;
+		return BequestGameplayTags::Shared_Event_Hurt_Front;
 	}
 	else if (AngleDifference <= -135.f || AngleDifference >= 135.f)
 	{
-		return BequestGameplayTags::Shared_Status_Hurt_Back;
+		return BequestGameplayTags::Shared_Event_Hurt_Back;
 	}
 	else if (AngleDifference < -45.f && AngleDifference > -135.f)
 	{
-		return BequestGameplayTags::Shared_Status_Hurt_Left;
+		return BequestGameplayTags::Shared_Event_Hurt_Left;
 	}
 	else if (AngleDifference > 45.f && AngleDifference < 135.f)
 	{
-		return BequestGameplayTags::Shared_Status_Hurt_Right;
+		return BequestGameplayTags::Shared_Event_Hurt_Right;
 	}
 	else
 	{
-		return BequestGameplayTags::Shared_Status_Hurt_Front;
+		return BequestGameplayTags::Shared_Event_Hurt_Front;
 	}
 }
 

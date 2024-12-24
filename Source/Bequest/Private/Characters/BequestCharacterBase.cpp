@@ -40,7 +40,7 @@ void ABequestCharacterBase::LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLa
 {
 	if (HasAuthority())
 	{
-		MulticastLinkAnimClassLayer(AnimLayerClass);
+		Multicast_LinkAnimClassLayer(AnimLayerClass);
 	}
 }
 
@@ -48,16 +48,16 @@ void ABequestCharacterBase::UnlinkAnimClassLayer(TSubclassOf<UAnimInstance> Anim
 {
 	if (HasAuthority())
 	{
-		MulticastUnlinkAnimClassLayer(AnimLayerClass);
+		Multicast_UnlinkAnimClassLayer(AnimLayerClass);
 	}
 }
 
-void ABequestCharacterBase::MulticastLinkAnimClassLayer_Implementation(TSubclassOf<UAnimInstance> AnimLayerClass)
+void ABequestCharacterBase::Multicast_LinkAnimClassLayer_Implementation(TSubclassOf<UAnimInstance> AnimLayerClass)
 {
 	GetMesh()->LinkAnimClassLayers(AnimLayerClass);
 }
 
-void ABequestCharacterBase::MulticastUnlinkAnimClassLayer_Implementation(TSubclassOf<UAnimInstance> AnimLayerClass)
+void ABequestCharacterBase::Multicast_UnlinkAnimClassLayer_Implementation(TSubclassOf<UAnimInstance> AnimLayerClass)
 {
 	GetMesh()->UnlinkAnimClassLayers(AnimLayerClass);
 }

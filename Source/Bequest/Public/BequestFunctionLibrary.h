@@ -26,10 +26,16 @@ public:
 	static UBequestAbilitySystemComponent* NativeGetBequestASCFromActor(AActor* Actor);
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
-	static void AddGameplayTagToActor(AActor* Actor, FGameplayTag Tag);
+	static void AddTagWithReferenceCounting(AActor* Actor, FGameplayTag Tag);
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
-	static void RemoveGameplayTagFromActor(AActor* Actor, FGameplayTag Tag);
+	static void RemoveTagWithReferenceCounting(AActor* Actor, FGameplayTag Tag);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
+	static void AddGameplayTag(AActor* Actor, FGameplayTag Tag);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
+	static void RemoveGameplayTag(AActor* Actor, FGameplayTag Tag);
 
 	static bool NativeCheckTagOnActor(AActor* Actor, FGameplayTag Tag);
 	

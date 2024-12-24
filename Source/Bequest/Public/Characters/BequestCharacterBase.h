@@ -50,10 +50,10 @@ protected:
 
 private:
 	UFUNCTION(NetMulticast, Reliable)
-	void MulticastLinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
+	void Multicast_LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 	
 	UFUNCTION(NetMulticast, Reliable)
-	void MulticastUnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
+	void Multicast_UnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 
 public:
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
