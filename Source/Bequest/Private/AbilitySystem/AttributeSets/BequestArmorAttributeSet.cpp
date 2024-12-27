@@ -28,17 +28,16 @@ void UBequestArmorAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 {
 	Super::PostGameplayEffectExecute(Data);
 
-	if (Data.EvaluatedData.Attribute == GetDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetArmorDamageAttribute())
 	{
-		const float LocalDamageDone = GetDamage();
-		SetDamage(0.f);
+		const float LocalDamageDone = GetArmorDamage();
+		//SetArmorDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
 			const float NewHealth = GetCurrentArmor() - LocalDamageDone;
 			SetCurrentArmor(FMath::Clamp(NewHealth, 0.0f, GetMaximumArmor()));
 		}
 	}
-	
 	else if (Data.EvaluatedData.Attribute == GetCurrentArmorAttribute())
 	{
 		SetCurrentArmor(FMath::Clamp(GetCurrentArmor(), 0.0f, GetMaximumArmor()));

@@ -24,8 +24,8 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Life Attribute Set", meta = (HideFromLevelInfos))
-	FGameplayAttributeData Damage;
-	ATTRIBUTE_ACCESSORS(UBequestLifeAttributeSet, Damage)
+	FGameplayAttributeData LifeDamage;
+	ATTRIBUTE_ACCESSORS(UBequestLifeAttributeSet, LifeDamage)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Life Attribute Set", ReplicatedUsing = OnRep_CurrentLife)
 	FGameplayAttributeData CurrentLife;

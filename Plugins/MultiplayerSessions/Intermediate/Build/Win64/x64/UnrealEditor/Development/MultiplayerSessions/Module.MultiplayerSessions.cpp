@@ -3,6 +3,4 @@
 #include "M:/Repos/bequest/Plugins/MultiplayerSessions/Intermediate/Build/Win64/UnrealEditor/Inc/MultiplayerSessions/UHT/MultiplayerSessions.init.gen.cpp"
 #include "M:/Repos/bequest/Plugins/MultiplayerSessions/Intermediate/Build/Win64/UnrealEditor/Inc/MultiplayerSessions/UHT/MultiplayerSessionsSubsystem.gen.cpp"
 #include "M:/Repos/bequest/Plugins/MultiplayerSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/MultiplayerSessions/PerModuleInline.gen.cpp"
-#include "M:/Repos/bequest/Plugins/MultiplayerSessions/Source/MultiplayerSessions/Private/Menu.cpp"
 #include "M:/Repos/bequest/Plugins/MultiplayerSessions/Source/MultiplayerSessions/Private/MultiplayerSessions.cpp"
-#include "M:/Repos/bequest/Plugins/MultiplayerSessions/Source/MultiplayerSessions/Private/MultiplayerSessionsSubsystem.cpp"

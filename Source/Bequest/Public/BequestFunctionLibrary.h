@@ -52,13 +52,4 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Bequest|FunctionLibrary")
 	static FGameplayTag ComputeHitReactDirectionTag(AActor* Instigator, AActor* HitActor, float& AngleDifference);
-
-	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
-	void SendGameplayEventToActorReplicated(AActor* SourceActor, AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
-	
-	UFUNCTION(Server, Unreliable)
-	void Server_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
-	
-	UFUNCTION(NetMulticast, Unreliable)
-	void Multicast_SendGameplayEventToActor(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData);
 };

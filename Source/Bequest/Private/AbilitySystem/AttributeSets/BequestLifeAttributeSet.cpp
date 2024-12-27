@@ -3,7 +3,10 @@
 
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 
+#include "BequestFunctionLibrary.h"
+#include "BequestGameplayTags.h"
 #include "GameplayEffectExtension.h"
+#include "Components/BequestAbilitySystemComponent.h"
 #include "Net/UnrealNetwork.h"
 
 UBequestLifeAttributeSet::UBequestLifeAttributeSet()
@@ -26,20 +29,33 @@ void UBequestLifeAttributeSet::PostGameplayEffectExecute(const FGameplayEffectMo
 {
 	Super::PostGameplayEffectExecute(Data);
 	
-	if (Data.EvaluatedData.Attribute == GetDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetLifeDamageAttribute())
 	{
-		const float LocalDamageDone = GetDamage();
-		SetDamage(0.f);
+		const float LocalDamageDone = GetLifeDamage();
+		//SetLifeDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
-			const float NewHealth = GetCurrentLife() - LocalDamageDone;
-			SetCurrentLife(FMath::Clamp(NewHealth, 0.0f, GetMaximumLife()));
+			const float NewLife = GetCurrentLife() - LocalDamageDone;
+			SetCurrentLife(FMath::Clamp(NewLife, 0.0f, GetMaximumLife()));
 		}
 	}
-	
 	else if (Data.EvaluatedData.Attribute == GetCurrentLifeAttribute())
 	{
 		SetCurrentLife(FMath::Clamp(GetCurrentLife(), 0.0f, GetMaximumLife()));
+	}
+
+	if (GetCurrentLife() == 0.f)
+	{
+		//UBequestFunctionLibrary::AddTagWithReferenceCounting(GetOwningActor(), BequestGameplayTags::Character_State_Dead);
+		UBequestAbilitySystemComponent* AbilitySystemComponent = Cast<UBequestAbilitySystemComponent>(GetOwningAbilitySystemComponent());
+		if (AbilitySystemComponent)
+		{
+			FGameplayEventData EventData;
+			EventData.EventTag = BequestGameplayTags::Character_Event_Death;
+			EventData.Instigator = Data.EffectSpec.GetContext().GetInstigator();
+			EventData.Target = GetOwningActor();
+			AbilitySystemComponent->HandleGameplayEvent(EventData.EventTag, &EventData);
+		}
 	}
 }
 

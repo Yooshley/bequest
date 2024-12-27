@@ -87,7 +87,7 @@ void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorBegin(AActor* Hi
 	Data.Instigator = GetOwningPawn();
 	Data.Target = HitActor;
 	
-	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(),BequestGameplayTags::Shared_Event_Hit,Data);
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(),BequestGameplayTags::Character_Event_Hit,Data);
 }
 
 void UBequestEquipmentSystemComponent::OnEquipmentHitTargetActorEnd(AActor* HitActor)
@@ -105,10 +105,14 @@ void UBequestEquipmentSystemComponent::IncrementMontage()
 	}
 }
 
-UAnimMontage* UBequestEquipmentSystemComponent::GetEquipmentMontage()
+UAnimMontage* UBequestEquipmentSystemComponent::GetEquipmentMontage(bool bAlternateMontage)
 {
 	ABequestEquipmentBase* Equipment = GetEquippedEquipment();
 	if (Equipment == nullptr) return nullptr;
+	if (bAlternateMontage)
+	{
+		return Equipment->EquipmentData.EquipmentAlternateMontageMap[MontageIndex];
+	}
 	return Equipment->EquipmentData.EquipmentMontageMap[MontageIndex];
 }
 

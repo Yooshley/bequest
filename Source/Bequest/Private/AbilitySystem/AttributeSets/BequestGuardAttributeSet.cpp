@@ -2,6 +2,8 @@
 
 
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
+
+#include "BequestGameplayTags.h"
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
 
@@ -26,17 +28,16 @@ void UBequestGuardAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 {
 	Super::PostGameplayEffectExecute(Data);
 
-	if (Data.EvaluatedData.Attribute == GetDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetGuardDamageAttribute())
 	{
-		const float LocalDamageDone = GetDamage();
-		SetDamage(0.f);
+		const float LocalDamageDone = GetGuardDamage();
+		//SetGuardDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
 			const float NewHealth = GetCurrentGuard() - LocalDamageDone;
 			SetCurrentGuard(FMath::Clamp(NewHealth, 0.0f, GetMaximumGuard()));
 		}
 	}
-
 	else if (Data.EvaluatedData.Attribute == GetRecoveryAttribute())
 	{
 		const float LocalHealingDone = GetRecovery();
@@ -47,15 +48,25 @@ void UBequestGuardAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 			SetCurrentGuard(FMath::Clamp(NewHealth, 0.0f, GetMaximumGuard()));
 		}
 	}
-	
 	else if (Data.EvaluatedData.Attribute == GetCurrentGuardAttribute())
 	{
 		SetCurrentGuard(FMath::Clamp(GetCurrentGuard(), 0.0f, GetMaximumGuard()));
 	}
-
 	else if (Data.EvaluatedData.Attribute == GetGuardRegenerationAttribute())
 	{
 		SetGuardRegeneration(FMath::Clamp(GetGuardRegeneration(), 0.0f, GetMaximumGuard()));
+	}
+
+	if (GetCurrentGuard() == 0.f)
+	{
+		UAbilitySystemComponent* AbilitySystemComponent = GetOwningAbilitySystemComponent();
+		if (AbilitySystemComponent)
+		{
+			FGameplayEventData EventData;
+			EventData.Instigator = Data.EffectSpec.GetContext().GetInstigator();
+			EventData.Target = GetOwningActor();
+			AbilitySystemComponent->HandleGameplayEvent(BequestGameplayTags::Character_Event_Stun, &EventData);
+		}
 	}
 }
 

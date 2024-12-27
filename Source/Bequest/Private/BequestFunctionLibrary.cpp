@@ -77,7 +77,19 @@ bool UBequestFunctionLibrary::NativeCheckTagOnActor(AActor* Actor, FGameplayTag 
 
 void UBequestFunctionLibrary::CheckTagOnActor(AActor* Actor, FGameplayTag Tag, EBequestConfirmType& ConfirmType)
 {
-	ConfirmType = NativeCheckTagOnActor(Actor, Tag) ? EBequestConfirmType::Yes : EBequestConfirmType::No;
+    if (!Actor)
+    {
+        FFrame::KismetExecutionMessage(TEXT("Actor parameter is not assigned or invalid!"), ELogVerbosity::Error);
+        ConfirmType = EBequestConfirmType::No;
+        return;
+    }
+    if (!Tag.IsValid())
+    {
+        FFrame::KismetExecutionMessage(TEXT("Tag parameter is not assigned or invalid!"), ELogVerbosity::Error);
+        ConfirmType = EBequestConfirmType::No;
+        return;
+    }
+    ConfirmType = NativeCheckTagOnActor(Actor, Tag) ? EBequestConfirmType::Yes : EBequestConfirmType::No;
 }
 
 UBequestEquipmentSystemComponent* UBequestFunctionLibrary::NativeGetEquipmentSystemComponentFromActor(AActor* Actor)
@@ -134,44 +146,22 @@ FGameplayTag UBequestFunctionLibrary::ComputeHitReactDirectionTag(AActor* Instig
 
 	if (AngleDifference >= -45.f && AngleDifference <= 45.f)
 	{
-		return BequestGameplayTags::Shared_Event_Hurt_Front;
+		return BequestGameplayTags::Character_Event_Hurt_Front;
 	}
 	else if (AngleDifference <= -135.f || AngleDifference >= 135.f)
 	{
-		return BequestGameplayTags::Shared_Event_Hurt_Back;
+		return BequestGameplayTags::Character_Event_Hurt_Back;
 	}
 	else if (AngleDifference < -45.f && AngleDifference > -135.f)
 	{
-		return BequestGameplayTags::Shared_Event_Hurt_Left;
+		return BequestGameplayTags::Character_Event_Hurt_Left;
 	}
 	else if (AngleDifference > 45.f && AngleDifference < 135.f)
 	{
-		return BequestGameplayTags::Shared_Event_Hurt_Right;
+		return BequestGameplayTags::Character_Event_Hurt_Right;
 	}
 	else
 	{
-		return BequestGameplayTags::Shared_Event_Hurt_Front;
+		return BequestGameplayTags::Character_Event_Hurt_Front;
 	}
-}
-
-void UBequestFunctionLibrary::SendGameplayEventToActorReplicated(AActor* SourceActor, AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData)
-{
-	if (SourceActor->HasAuthority())
-	{
-		Multicast_SendGameplayEventToActor(TargetActor, Tag, EventData);
-	}
-	else
-	{
-		Server_SendGameplayEventToActor(TargetActor, Tag, EventData);
-	}
-}
-
-void UBequestFunctionLibrary::Server_SendGameplayEventToActor_Implementation(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData)
-{
-	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
-}
-
-void UBequestFunctionLibrary::Multicast_SendGameplayEventToActor_Implementation(AActor* TargetActor, FGameplayTag Tag, FGameplayEventData EventData)
-{
-	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(TargetActor, Tag, EventData);
 }

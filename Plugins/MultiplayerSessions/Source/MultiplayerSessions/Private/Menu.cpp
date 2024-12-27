@@ -6,6 +6,7 @@
 #include "MultiplayerSessionsSubsystem.h"
 #include "OnlineSessionSettings.h"
 #include "OnlineSubsystem.h"
+#include "OnlineSubsystemUtils.h"
 #include "Interfaces/OnlineSessionInterface.h"
 
 void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch, FString LobbyPath)
@@ -15,7 +16,7 @@ void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch, FStr
 	MatchType = TypeOfMatch;
 	AddToViewport();
 	SetVisibility(ESlateVisibility::Visible);
-	bIsFocusable = true;
+	SetIsFocusable(true);
 
 	UWorld* World = GetWorld();
 	if (World)
@@ -134,7 +135,7 @@ void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SessionResu
 
 void UMenu::OnJoinSession(EOnJoinSessionCompleteResult::Type Result)
 {
-	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get();
+	IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
 	if (Subsystem)
 	{
 		IOnlineSessionPtr SessionInterface = Subsystem->GetSessionInterface();

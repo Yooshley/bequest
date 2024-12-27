@@ -51,7 +51,7 @@ public:
 	void IncrementMontage();
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
-	UAnimMontage* GetEquipmentMontage();
+	UAnimMontage* GetEquipmentMontage(bool bAlternateMontage);
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
 	TSubclassOf<UBequestCharacterLinkedAnimLayer> GetEquipmentAnimLayer();

@@ -49,7 +49,7 @@ FGameplayEffectSpecHandle UBequestGameplayAbilityBase::GetDamageEffectSpecHandle
 	EffectContextHandle.AddInstigator(GetAvatarActorFromActorInfo(), GetAvatarActorFromActorInfo());
 	
 	FGameplayEffectSpecHandle EffectSpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(Effect, GetAbilityLevel(), EffectContextHandle);
-	EffectSpecHandle.Data->SetSetByCallerMagnitude(BequestGameplayTags::Shared_SetByCaller_Damage, Damage);
+	EffectSpecHandle.Data->SetSetByCallerMagnitude(TypeTag, Damage);
 	
 	return EffectSpecHandle;
 }

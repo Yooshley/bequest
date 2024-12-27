@@ -65,6 +65,20 @@ void UBequestAbilitySystemComponent::LoadAbilityData(TSoftObjectPtr<UDataAsset_A
 					GiveAbility(AbilitySpec);
 				}
 			}
+			
+			if (TArray<TSubclassOf<UGameplayEffect>> Effects = LoadedData->GetEffects(); !Effects.IsEmpty())
+            {
+            	for (const TSubclassOf<UGameplayEffect>& GameplayEffectClass : Effects)
+            	{
+            		if (!IsValid(GameplayEffectClass)) continue;
+            		FGameplayEffectContextHandle EffectContextHandle = MakeEffectContext();
+            		EffectContextHandle.AddSourceObject(this);
+            		if (FGameplayEffectSpecHandle GameplayEffectSpecHandle = MakeOutgoingSpec(GameplayEffectClass, 1, EffectContextHandle); GameplayEffectSpecHandle.IsValid())
+            		{
+            			ApplyGameplayEffectSpecToTarget(*GameplayEffectSpecHandle.Data.Get(), this);
+            		}
+            	}
+            }
 		}
 	}
 }

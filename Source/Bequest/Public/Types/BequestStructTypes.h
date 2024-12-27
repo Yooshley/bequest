@@ -21,6 +21,9 @@ struct FBequestEquipmentData
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TMap<int32, UAnimMontage*> EquipmentMontageMap;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TMap<int32, UAnimMontage*> EquipmentAlternateMontageMap;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSoftObjectPtr<UDataAsset_AbilitySystem> EquipmentAbilityData;

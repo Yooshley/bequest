@@ -4,15 +4,21 @@
 #include "AbilitySystem/EffectCalculations/GEExecCalc_Damage.h"
 
 #include "BequestGameplayTags.h"
+#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
+#include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 
 struct FBequestDamageCapture
 {
-	DECLARE_ATTRIBUTE_CAPTUREDEF(Damage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(LifeDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(ArmorDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(GuardDamage)
 
 	FBequestDamageCapture()
 	{
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestLifeAttributeSet, Damage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestLifeAttributeSet, LifeDamage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestArmorAttributeSet, ArmorDamage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestGuardAttributeSet, GuardDamage, Source, false);
 	}
 };
 
@@ -25,7 +31,9 @@ static FBequestDamageCapture GetDamageCapture()
 
 UGEExecCalc_Damage::UGEExecCalc_Damage()
 {
-	RelevantAttributesToCapture.Add(GetDamageCapture().DamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().LifeDamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().ArmorDamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().GuardDamageDef);
 }
 
 void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -38,11 +46,23 @@ void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecu
 	EvaluateParams.TargetTags = EffectSpec.CapturedTargetTags.GetAggregatedTags();
 
 	float Damage = 0.f;
+	FProperty* DamageType = nullptr;
 	for (const TPair<FGameplayTag, float>& TagMagnitude : EffectSpec.SetByCallerTagMagnitudes)
 	{
-		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Shared_SetByCaller_Damage))
+		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Life))
 		{
 			Damage = TagMagnitude.Value;
+			DamageType = GetDamageCapture().LifeDamageProperty;
+		}
+		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Armor))
+		{
+			Damage = TagMagnitude.Value;
+			DamageType = GetDamageCapture().ArmorDamageProperty;
+		}
+		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Guard))
+		{
+			Damage = TagMagnitude.Value;
+			DamageType = GetDamageCapture().GuardDamageProperty;
 		}
 	}
 
@@ -50,7 +70,7 @@ void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecu
 	{
 		OutExecutionOutput.AddOutputModifier(
 			FGameplayModifierEvaluatedData(
-				GetDamageCapture().DamageProperty,
+				DamageType,
 				EGameplayModOp::Override,
 				Damage
 				)
