@@ -28,6 +28,8 @@ void UBequestGuardAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 {
 	Super::PostGameplayEffectExecute(Data);
 
+	if (GetMaximumGuard() == 0) return;
+
 	if (Data.EvaluatedData.Attribute == GetGuardDamageAttribute())
 	{
 		const float LocalDamageDone = GetGuardDamage();
