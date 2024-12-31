@@ -67,14 +67,35 @@ void UBequestEquipmentSystemComponent::ToggleEquipmentCollision(bool bShouldEnab
 	ABequestEquipmentBase* Equipment = GetEquippedEquipment();
 	check(Equipment);
 
-	if (bShouldEnable)
+	if (Equipment->GetEquipmentCollisionBox())
 	{
-		Equipment->GetEquipmentCollisionBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		if (bShouldEnable)
+		{
+			Equipment->GetEquipmentCollisionBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		}
+		else
+		{
+			Equipment->GetEquipmentCollisionBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			EquipmentOverlappedActors.Empty();
+		}
 	}
-	else
+}
+
+void UBequestEquipmentSystemComponent::ToggleEquipmentTrail(bool bShouldEnable)
+{
+	ABequestEquipmentBase* Equipment = GetEquippedEquipment();
+	check(Equipment);
+	
+	if (Equipment->GetEquipmentTrailFX())
 	{
-		Equipment->GetEquipmentCollisionBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		EquipmentOverlappedActors.Empty();
+		if (bShouldEnable)
+		{
+			Equipment->GetEquipmentTrailFX()->Activate();
+		}
+		else
+		{
+			Equipment->GetEquipmentTrailFX()->Deactivate();
+		}
 	}
 }
 

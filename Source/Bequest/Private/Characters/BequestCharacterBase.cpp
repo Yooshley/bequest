@@ -22,8 +22,8 @@ ABequestCharacterBase::ABequestCharacterBase()
 	
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
 	
-	AbilitySystemWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("AbilitySystemWidget"));
-	AbilitySystemWidget->SetupAttachment(GetMesh());
+	// StatsWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("StatsWidget"));
+	// StatsWidget->SetupAttachment(GetMesh());
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const

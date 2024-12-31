@@ -13,8 +13,8 @@ ABequestEquipmentBase::ABequestEquipmentBase()
 	bNetLoadOnClient = true;
 	PrimaryActorTick.bCanEverTick = false;
 
-	EquipmentMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("EquipmentMesh"));
-	SetRootComponent(EquipmentMesh);
+	EquipmentSkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("EquipmentMesh"));
+	SetRootComponent(EquipmentSkeletalMesh);
 
 	EquipmentCollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("EquipmentCollisionBox"));
 	EquipmentCollisionBox->SetupAttachment(GetRootComponent());
@@ -22,6 +22,8 @@ ABequestEquipmentBase::ABequestEquipmentBase()
 	EquipmentCollisionBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	EquipmentCollisionBox->OnComponentBeginOverlap.AddUniqueDynamic(this, &ThisClass::OnCollisionBoxBeginOverlap);
 	EquipmentCollisionBox->OnComponentEndOverlap.AddUniqueDynamic(this, &ThisClass::OnCollisionBoxEndOverlap);
+
+	EquipmentTrailFX = CreateDefaultSubobject<UNiagaraComponent>(TEXT("EquipmentTrailFX"));
 }
 
 void ABequestEquipmentBase::OnCollisionBoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,

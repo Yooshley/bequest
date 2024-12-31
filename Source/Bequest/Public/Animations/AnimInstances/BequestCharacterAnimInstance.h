@@ -32,7 +32,10 @@ protected:
 	float GroundSpeed;
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Locomotion")
-	bool bHasAcceleration;
+	bool bIsAccelerating;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Locomotion")
+	bool bIsFalling;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Locomotion")
 	float LocomotionDirection;

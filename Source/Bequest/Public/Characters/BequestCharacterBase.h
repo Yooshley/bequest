@@ -45,8 +45,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Bequest|Animation")
     UMotionWarpingComponent* MotionWarpingComponent;
     
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-    class UWidgetComponent* AbilitySystemWidget;
+    // UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    // class UWidgetComponent* StatsWidget;
 
 private:
 	UFUNCTION(NetMulticast, Reliable)

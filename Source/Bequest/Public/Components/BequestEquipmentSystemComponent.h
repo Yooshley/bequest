@@ -35,6 +35,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
 	void ToggleEquipmentCollision(bool bShouldEnable);
 
+	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
+	void ToggleEquipmentTrail(bool bShouldEnable);
+
 	virtual void OnEquipmentHitTargetActorBegin(AActor* HitActor);
 	virtual void OnEquipmentHitTargetActorEnd(AActor* HitActor);
 

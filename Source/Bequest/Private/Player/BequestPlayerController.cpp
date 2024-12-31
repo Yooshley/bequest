@@ -2,8 +2,7 @@
 
 
 #include "Player/BequestPlayerController.h"
-
-#include "BequestDebugHelper.h"
+#include "GameFramework/PlayerState.h"
 
 ABequestPlayerController::ABequestPlayerController()
 {

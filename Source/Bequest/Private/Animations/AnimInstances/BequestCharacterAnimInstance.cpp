@@ -24,7 +24,8 @@ void UBequestCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaS
 		return;
 	}
 	GroundSpeed = OwningCharacter->GetVelocity().Size2D();
-	bHasAcceleration = OwningMovementComponent->GetCurrentAcceleration().SizeSquared2D()>0.f;
+	bIsFalling = OwningCharacter->GetCharacterMovement()->IsFalling();
+	bIsAccelerating = OwningMovementComponent->GetCurrentAcceleration().SizeSquared2D()>0.f;
 	
 	LocomotionDirection = UKismetAnimationLibrary::CalculateDirection(OwningCharacter->GetVelocity(), OwningCharacter->GetActorRotation());
 

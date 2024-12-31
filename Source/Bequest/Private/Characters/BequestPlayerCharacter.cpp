@@ -3,12 +3,12 @@
 
 #include "Characters/BequestPlayerCharacter.h"
 
-#include "BequestDebugHelper.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BequestAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Net/UnrealNetwork.h"
 
 ABequestPlayerCharacter::ABequestPlayerCharacter()
 {
@@ -30,6 +30,20 @@ ABequestPlayerCharacter::ABequestPlayerCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f,500.f,0.f);
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 500.f;
+
+	//TODO: Create proper Equipment System
+	//Equipment Components
+	HeadEquipment =  CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HeadEquipment"));
+	HeadEquipment->SetupAttachment(GetMesh(), TEXT("headSocket"));
+	ShoulderEquipment =  CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ShoulderEquipment"));
+	ShoulderEquipment->SetupAttachment(GetMesh());
+	ShoulderEquipment->SetLeaderPoseComponent(GetMesh());
+	BackEquipment =  CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BackEquipment"));
+	BackEquipment->SetupAttachment(GetMesh());
+	BackEquipment->SetLeaderPoseComponent(GetMesh());
+	TorsoEquipment =  CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("TorsoEquipment"));
+	TorsoEquipment->SetupAttachment(GetMesh());
+	TorsoEquipment->SetLeaderPoseComponent(GetMesh());
 }
 
 void ABequestPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -66,6 +80,38 @@ void ABequestPlayerCharacter::OnRep_PlayerState()
 	{
 		BequestASC->InitializeAbilitySystem(this, this);
 		PostInitializeAbilitySystem();
-		//InitializeAbilitySystemWidget();
+	}
+}
+
+void ABequestPlayerCharacter::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ABequestPlayerCharacter, EquipmentColorIndex);
+}
+
+
+void ABequestPlayerCharacter::OnRep_EquipmentColorIndex()
+{
+	SetEquipmentColor(EquipmentColorIndex);
+}
+
+void ABequestPlayerCharacter::SetEquipmentColor(int8 ColorIndex)
+{
+	if (BackEquipment)
+	{
+		UMaterialInstanceDynamic* BackDynamicMaterial = BackEquipment->CreateAndSetMaterialInstanceDynamic(0);
+		if (BackDynamicMaterial)
+		{
+			BackDynamicMaterial->SetScalarParameterValue(FName("ColorIndex"), ColorIndex);
+		}
+	}
+
+	if (HeadEquipment)
+	{
+		UMaterialInstanceDynamic* HeadDynamicMaterial = HeadEquipment->CreateAndSetMaterialInstanceDynamic(0);
+		if (HeadDynamicMaterial)
+		{
+			HeadDynamicMaterial->SetScalarParameterValue(FName("ColorIndex"), ColorIndex);
+		}
 	}
 }
