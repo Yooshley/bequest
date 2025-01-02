@@ -27,6 +27,7 @@ public:
 	TSoftObjectPtr<UDataAsset_AbilitySystem> AbilitySystemData;
 	
 	void InitializeAbilitySystem(AActor* InOwningActor, AActor* InAvatarActor);
+	
 	const UAttributeSet* GetOrCreateAttributeSet(const TSubclassOf<UAttributeSet>& AttributeSet);
 	
 	UFUNCTION(BlueprintCallable, Category="Bequest|AbilitySystem")

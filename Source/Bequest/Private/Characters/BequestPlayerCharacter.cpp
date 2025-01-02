@@ -79,7 +79,17 @@ void ABequestPlayerCharacter::OnRep_PlayerState()
 	if(BequestASC)
 	{
 		BequestASC->InitializeAbilitySystem(this, this);
-		PostInitializeAbilitySystem();
+		SetupCharacterStatsWidget();
+	}
+}
+
+void ABequestPlayerCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	if(BequestASC)
+	{
+		BequestASC->InitializeAbilitySystem(this, this);
+		SetupCharacterStatsWidget();
 	}
 }
 

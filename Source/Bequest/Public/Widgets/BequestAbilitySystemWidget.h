@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "BequestAbilitySystemWidget.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnWidgetInitialized);
+
 struct FOnAttributeChangeData;
 struct FGameplayAttribute;
 class UAbilitySystemComponent;
@@ -26,6 +28,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	bool ListenForArmorAttributeSetChanges = true;
+
+	UPROPERTY(BlueprintAssignable, Category = "Ability System")
+	FOnWidgetInitialized OnWidgetInitialized;
 	
 	UFUNCTION(BlueprintCallable, Category = "Ability System")
 	bool InitializeAbilitySystemWidget(UAbilitySystemComponent* InOwnerAbilitySystemComponent);

@@ -8,6 +8,8 @@
 #include "Interfaces/EquipmentSystemInterface.h"
 #include "BequestCharacterBase.generated.h"
 
+class UBequestHUDComponent;
+class ABequestWidgetActor;
 class UBequestAbilitySystemWidget;
 class UBequestEquipmentSystemComponent;
 class ABequestPlayerEquipment;
@@ -23,9 +25,6 @@ public:
 	ABequestCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UBequestEquipmentSystemComponent* GetEquipmentSystemComponent() const override;
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void PostInitializeAbilitySystem();
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Animation")
 	void LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
@@ -34,8 +33,6 @@ public:
 	void UnlinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
 
 protected:
-	virtual void PossessedBy(AController* NewController) override;
-	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bequest|AbilitySystem")
 	UBequestAbilitySystemComponent* BequestASC;
 
@@ -45,8 +42,17 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Bequest|Animation")
     UMotionWarpingComponent* MotionWarpingComponent;
     
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-    UChildActorComponent* StatsActor;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    UChildActorComponent* StatsActorComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UBequestAbilitySystemWidget* StatsActorWidget;
+
+	UFUNCTION()
+	void SetupCharacterStatsWidget();
+    	
+	UFUNCTION()
+	void OnStatsWidgetInitialized();
 
 private:
 	UFUNCTION(NetMulticast, Reliable)

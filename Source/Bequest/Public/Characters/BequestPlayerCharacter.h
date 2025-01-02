@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Characters/BequestCharacterBase.h"
+#include "Components/BequestAbilitySystemComponent.h"
 #include "BequestPlayerCharacter.generated.h"
 
 class UCameraComponent;
@@ -23,6 +24,7 @@ public:
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void OnRep_PlayerState() override;
+	virtual void PossessedBy(AController* NewController) override;
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
 private:

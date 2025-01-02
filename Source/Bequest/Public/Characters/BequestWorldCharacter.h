@@ -9,9 +9,12 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class BEQUEST_API ABequestWorldCharacter : public ABequestCharacterBase
 {
 	GENERATED_BODY()
-	
+
+protected:
+	virtual void BeginPlay() override;
+	virtual void PostNetReceive() override;
 };

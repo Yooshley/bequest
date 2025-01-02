@@ -4,7 +4,6 @@
 #include "Widgets/BequestAbilitySystemWidget.h"
 
 #include "AbilitySystemComponent.h"
-#include "BequestDebugHelper.h"
 #include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
@@ -47,10 +46,6 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 			On_MaximumLifeChanged(MaxLife, 0.0f, CurrentLife / MaxLife);
 			On_CurrentLifeChanged(CurrentLife, 0.0f, CurrentLife / MaxLife);
 		}
-		else
-		{
-			return false;
-		}
 	}
 	
 	// Bind Guard Attribute Delegates
@@ -70,10 +65,6 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 			On_CurrentGuardChanged(CurrentGuard, 0.0f, CurrentGuard / MaxGuard);
 			On_GuardRegenerationChanged(AbilitySystemComponent->GetNumericAttribute(UBequestGuardAttributeSet::GetGuardRegenerationAttribute()), 0.0f);
 		}
-		else
-		{
-			return false;
-		}
 	}
 
 	// Bind Armor Attribute Delegates
@@ -91,12 +82,9 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 			On_MaximumArmorChanged(MaxArmor, 0.0f, CurrentArmor / MaxArmor);
 			On_CurrentArmorChanged(CurrentArmor, 0.0f, CurrentArmor / MaxArmor);
 		}
-		else
-		{
-			return false;
-		}
 	}
-	
+
+	OnWidgetInitialized.Broadcast();
 	return true;
 }
 

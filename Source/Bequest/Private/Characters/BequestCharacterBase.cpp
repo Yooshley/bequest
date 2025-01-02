@@ -3,11 +3,12 @@
 
 #include "Characters/BequestCharacterBase.h"
 
-#include "BequestDebugHelper.h"
 #include "Components/BequestAbilitySystemComponent.h"
 #include "Components/BequestEquipmentSystemComponent.h"
 #include "MotionWarpingComponent.h"
+#include "Actors/BequestWidgetActor.h"
 #include "Components/WidgetComponent.h"
+#include "Widgets/BequestAbilitySystemWidget.h"
 
 
 ABequestCharacterBase::ABequestCharacterBase()
@@ -21,9 +22,8 @@ ABequestCharacterBase::ABequestCharacterBase()
 	BequestESC = CreateDefaultSubobject<UBequestEquipmentSystemComponent>(TEXT("BequestESC"));
 	
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
-	
-	StatsActor = CreateDefaultSubobject<UChildActorComponent>(TEXT("StatsActor"));
-	StatsActor->SetupAttachment(GetMesh());
+	StatsActorComponent = CreateDefaultSubobject<UChildActorComponent>(TEXT("StatsActor"));
+	StatsActorComponent->SetupAttachment(GetMesh());
 }
 
 UAbilitySystemComponent* ABequestCharacterBase::GetAbilitySystemComponent() const
@@ -62,12 +62,27 @@ void ABequestCharacterBase::Multicast_UnlinkAnimClassLayer_Implementation(TSubcl
 	GetMesh()->UnlinkAnimClassLayers(AnimLayerClass);
 }
 
-void ABequestCharacterBase::PossessedBy(AController* NewController)
+void ABequestCharacterBase::SetupCharacterStatsWidget()
 {
-	Super::PossessedBy(NewController);
-	if(BequestASC)
+	ABequestWidgetActor* WidgetActor = Cast<ABequestWidgetActor>(StatsActorComponent->GetChildActor());
+	if (WidgetActor && StatsActorWidget)
 	{
-		BequestASC->InitializeAbilitySystem(this, this);
-		PostInitializeAbilitySystem();
+		WidgetActor->WidgetComponent->SetWidget(StatsActorWidget);
+
+		StatsActorWidget->OnWidgetInitialized.AddDynamic(this, &ABequestCharacterBase::OnStatsWidgetInitialized);
+		if (StatsActorWidget->InitializeAbilitySystemWidget(BequestASC))
+		{
+			OnStatsWidgetInitialized();
+		}
 	}
+}
+
+void ABequestCharacterBase::OnStatsWidgetInitialized()
+{
+	FVector StatsWidgetLocation = FVector(0, 0, 175.f);
+	if (IsLocallyControlled() && IsPlayerControlled())
+	{
+		StatsWidgetLocation = FVector(0, 0, -75.f);
+	}
+	StatsActorComponent->SetRelativeLocation(StatsWidgetLocation);
 }
