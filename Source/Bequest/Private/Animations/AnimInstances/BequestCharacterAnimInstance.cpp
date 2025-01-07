@@ -24,6 +24,13 @@ void UBequestCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaS
 		return;
 	}
 	GroundSpeed = OwningCharacter->GetVelocity().Size2D();
+	
+	const FVector WorldVelocity = OwningCharacter->GetVelocity();
+	const FRotator ActorRotation = OwningCharacter->GetActorRotation();
+	const FVector LocalVelocity = ActorRotation.UnrotateVector(WorldVelocity);
+	GroundSpeedX = LocalVelocity.Y;
+	GroundSpeedY = LocalVelocity.X;
+	
 	bIsFalling = OwningCharacter->GetCharacterMovement()->IsFalling();
 	bIsAccelerating = OwningMovementComponent->GetCurrentAcceleration().SizeSquared2D()>0.f;
 	

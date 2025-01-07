@@ -25,6 +25,9 @@ public:
 	ABequestCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UBequestEquipmentSystemComponent* GetEquipmentSystemComponent() const override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void PostInitializeAbilitySystem();
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Animation")
 	void LinkAnimClassLayer(TSubclassOf<UAnimInstance> AnimLayerClass);
@@ -50,9 +53,6 @@ protected:
 
 	UFUNCTION()
 	void SetupCharacterStatsWidget();
-    	
-	UFUNCTION()
-	void OnStatsWidgetInitialized();
 
 private:
 	UFUNCTION(NetMulticast, Reliable)

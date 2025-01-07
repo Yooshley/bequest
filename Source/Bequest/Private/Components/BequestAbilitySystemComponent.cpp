@@ -3,8 +3,15 @@
 
 #include "Components/BequestAbilitySystemComponent.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "BequestFunctionLibrary.h"
+#include "BequestGameplayTags.h"
+#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
+#include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
+#include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 #include "Data/AttributeSetDataTableRow.h"
 #include "Data/DataAsset_AbilityData.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 UBequestAbilitySystemComponent::UBequestAbilitySystemComponent()
@@ -24,7 +31,7 @@ void UBequestAbilitySystemComponent::InitializeAbilitySystem(AActor* InOwningAct
 
 void UBequestAbilitySystemComponent::LoadAbilityData(TSoftObjectPtr<UDataAsset_AbilitySystem> InAbilityDataAsset, UDataTable* InAttributeDataTable)
 {
-	if (GetOwnerActor()->HasAuthority())
+	//if (GetOwnerActor()->HasAuthority()) //Removed check for NPC HUD Init
 	{
 		if (InAbilityDataAsset.IsNull()) return;
 		UDataAsset_AbilitySystem* LoadedData = InAbilityDataAsset.LoadSynchronous();
@@ -143,6 +150,5 @@ bool UBequestAbilitySystemComponent::TryActivateAbilityByTag(FGameplayTag Tag)
 			return TryActivateAbility(Spec->Handle);
 		}
 	}
-
 	return false;
 }

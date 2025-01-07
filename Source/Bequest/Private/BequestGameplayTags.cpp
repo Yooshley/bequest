@@ -25,7 +25,9 @@ namespace BequestGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Guarded_Left, "Character.State.Guarded.Left");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Guarded_Right, "Character.State.Guarded.Right");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Armored, "Character.State.Armored");
+	UE_DEFINE_GAMEPLAY_TAG(Character_State_Deflect, "Character.State.Deflect");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Suppressed, "Character.State.Suppressed"); //Blocks Guard Regen
+	UE_DEFINE_GAMEPLAY_TAG(Character_State_Stunned, "Character.State.Stunned");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Dead, "Character.State.Dead");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Invulnerable, "Character.State.Invulnerable"); //Blocks All Damage
 	
@@ -41,8 +43,11 @@ namespace BequestGameplayTags
 	
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Stun, "Character.Event.Stun");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Block, "Character.Event.Block");
+	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Deflect, "Character.Event.Deflect");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Absorb, "Character.Event.Absorb");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Break, "Character.Event.Break");
+	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Hurt, "Character.Event.Hurt");
+	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Hurt_Heavy, "Character.Event.Hurt.Heavy");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Hurt_Front, "Character.Event.Hurt.Front");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Hurt_Back, "Character.Event.Hurt.Back");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Hurt_Left, "Character.Event.Hurt.Left");

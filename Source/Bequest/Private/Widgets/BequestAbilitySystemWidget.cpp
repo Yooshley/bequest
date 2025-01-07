@@ -83,8 +83,6 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 			On_CurrentArmorChanged(CurrentArmor, 0.0f, CurrentArmor / MaxArmor);
 		}
 	}
-
-	OnWidgetInitialized.Broadcast();
 	return true;
 }
 

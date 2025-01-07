@@ -14,4 +14,8 @@ UCLASS()
 class BEQUEST_API UBequestAnimInstanceBase : public UAnimInstance
 {
 	GENERATED_BODY()
+
+protected:
+	UFUNCTION(BlueprintPure, meta=(BlueprintThreadSafe))
+	bool DoesOwnerHaveTag(FGameplayTag Tag) const;
 };

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemComponent.h"
 #include "Abilities/GameplayAbility.h"
 #include "BequestGameplayAbilityBase.generated.h"
 
@@ -46,6 +47,12 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Ability", meta = (ExpandEnumAsExecs = "SuccessType"))
 	FActiveGameplayEffectHandle ApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& SpecHandle, EBequestResultType& SuccessType);
 
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Ability")
+	void ApplyDamage(FGameplayEventData EventData, TSubclassOf<UGameplayEffect> Effect, bool bIsCharged);
+	
+	bool SetIsFront(const AActor* QueryActor, const AActor* TargetActor);
+	void SendDamage(const FGameplayEventData& EventData, const TSubclassOf<UGameplayEffect>& DamageEffect, const FGameplayAttribute& DamageAttribute, FGameplayTag DamageTypeTag, FGameplayTag DamageEventTag, int32 Multiplier);
+	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Ability")
 	void SendGameplayEventToActor(AActor* Actor, FGameplayTag EventTag, FGameplayEventData Payload);
 	

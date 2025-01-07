@@ -42,6 +42,16 @@ private:
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
 	void Move(const FVector2D MovementVector);
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
+	float TurnSpeed = 10.f;
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
+	void Turn(const FVector2D TurnVector);
+
+	UFUNCTION(BlueprintCallable, Category = "Bequest|Input", meta = (AllowPrivateAccess = "true"))
+	void ToggleTurn(bool bEnable);
+	
 #pragma endregion
 
 public:
@@ -61,7 +71,7 @@ public:
 
 	UPROPERTY(ReplicatedUsing = OnRep_EquipmentColorIndex)
 	int32 EquipmentColorIndex;
-
+	
 	UFUNCTION()
 	void OnRep_EquipmentColorIndex();
 

@@ -27,7 +27,7 @@ void UBequestFunctionLibrary::AddTagWithReferenceCounting(AActor* Actor, FGamepl
 	Count++;
 	if (Count == 1)
 	{
-		AddGameplayTag(Actor, Tag);
+		AddGameplayTagUnique(Actor, Tag);
 	}
 }
 
@@ -47,7 +47,7 @@ void UBequestFunctionLibrary::RemoveTagWithReferenceCounting(AActor* Actor, FGam
 	}
 }
 
-void UBequestFunctionLibrary::AddGameplayTag(AActor* Actor, FGameplayTag Tag)
+void UBequestFunctionLibrary::AddGameplayTagUnique(AActor* Actor, FGameplayTag Tag)
 {
 	if (!Tag.IsValid()) return;
 	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
@@ -66,6 +66,17 @@ void UBequestFunctionLibrary::RemoveGameplayTag(AActor* Actor, FGameplayTag Tag)
 	{
 		BequestASC->RemoveLooseGameplayTag(Tag);  // Removing for server
 		BequestASC->RemoveReplicatedLooseGameplayTag(Tag);
+	}
+}
+
+void UBequestFunctionLibrary::RemoveGameplayTags(AActor* Actor, FGameplayTagContainer TagContainer)
+{
+	if (!TagContainer.IsValid()) return;
+	UBequestAbilitySystemComponent* BequestASC = NativeGetBequestASCFromActor(Actor);
+	if(BequestASC->HasAnyMatchingGameplayTags(TagContainer))
+	{
+		BequestASC->RemoveLooseGameplayTags(TagContainer);  // Removing for server
+		BequestASC->RemoveLooseGameplayTags(TagContainer);
 	}
 }
 

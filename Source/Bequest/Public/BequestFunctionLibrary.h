@@ -6,6 +6,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "BequestFunctionLibrary.generated.h"
 
+struct FGameplayTagContainer;
 struct FGameplayEventData;
 enum class EBequestValidType : uint8;
 class UBequestEquipmentSystemComponent;
@@ -32,10 +33,13 @@ public:
 	static void RemoveTagWithReferenceCounting(AActor* Actor, FGameplayTag Tag);
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
-	static void AddGameplayTag(AActor* Actor, FGameplayTag Tag);
+	static void AddGameplayTagUnique(AActor* Actor, FGameplayTag Tag);
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
 	static void RemoveGameplayTag(AActor* Actor, FGameplayTag Tag);
+	
+	UFUNCTION(BlueprintCallable, Category = "Bequest|FunctionLibrary")
+	static void RemoveGameplayTags(AActor* Actor, FGameplayTagContainer TagContainer);
 
 	static bool NativeCheckTagOnActor(AActor* Actor, FGameplayTag Tag);
 	

@@ -68,21 +68,12 @@ void ABequestCharacterBase::SetupCharacterStatsWidget()
 	if (WidgetActor && StatsActorWidget)
 	{
 		WidgetActor->WidgetComponent->SetWidget(StatsActorWidget);
-
-		StatsActorWidget->OnWidgetInitialized.AddDynamic(this, &ABequestCharacterBase::OnStatsWidgetInitialized);
-		if (StatsActorWidget->InitializeAbilitySystemWidget(BequestASC))
+		StatsActorWidget->InitializeAbilitySystemWidget(BequestASC);
+		FVector StatsWidgetLocation = FVector(0, 0, 175.f);
+		if (IsLocallyControlled() && IsPlayerControlled())
 		{
-			OnStatsWidgetInitialized();
+			StatsWidgetLocation = FVector(0, 0, -75.f);
 		}
+		StatsActorComponent->SetRelativeLocation(StatsWidgetLocation);
 	}
-}
-
-void ABequestCharacterBase::OnStatsWidgetInitialized()
-{
-	FVector StatsWidgetLocation = FVector(0, 0, 175.f);
-	if (IsLocallyControlled() && IsPlayerControlled())
-	{
-		StatsWidgetLocation = FVector(0, 0, -75.f);
-	}
-	StatsActorComponent->SetRelativeLocation(StatsWidgetLocation);
 }

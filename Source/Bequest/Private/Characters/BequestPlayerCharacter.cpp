@@ -3,11 +3,15 @@
 
 #include "Characters/BequestPlayerCharacter.h"
 
+#include <string>
+
+#include "BequestDebugHelper.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BequestAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "Net/UnrealNetwork.h"
 
 ABequestPlayerCharacter::ABequestPlayerCharacter()
@@ -58,19 +62,35 @@ void ABequestPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* P
 
 void ABequestPlayerCharacter::Move(const FVector2D MovementVector)
 {
-	const FRotator MovementRotation(0.f,Controller->GetControlRotation().Yaw,0.f);
-	
 	if (MovementVector.Y != 0.f)
-	{
-		const FVector ForwardDirection = MovementRotation.RotateVector(FVector::ForwardVector);
-		AddMovementInput(ForwardDirection,MovementVector.Y);
-	}
-	
-	if (MovementVector.X != 0.f)
-	{
-		const FVector RightDirection = MovementRotation.RotateVector(FVector::RightVector);
-		AddMovementInput(RightDirection,MovementVector.X);
-	}
+    {
+        AddMovementInput(FVector::ForwardVector, MovementVector.Y);
+    }
+    if (MovementVector.X != 0.f)
+    {
+        AddMovementInput(FVector::RightVector, MovementVector.X);
+    }
+}
+
+void ABequestPlayerCharacter::Turn(const FVector2D TurnVector)
+{
+	if (bUseControllerRotationYaw)
+    {
+        const float AngleRadians = FMath::Atan2(TurnVector.X, TurnVector.Y);
+        const float AngleDegrees = FMath::RadiansToDegrees(AngleRadians);
+        const FRotator TargetRotation = FRotator(0, AngleDegrees, 0);
+		
+        const FRotator CurrentRotation = Controller->GetControlRotation();
+        const FRotator TurnRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, GetWorld()->DeltaTimeSeconds, TurnSpeed);
+
+        Controller->SetControlRotation(TurnRotation);
+    }
+}
+
+void ABequestPlayerCharacter::ToggleTurn(bool bEnable)
+{
+	Controller->SetControlRotation(GetActorRotation());
+	bUseControllerRotationYaw = bEnable;
 }
 
 void ABequestPlayerCharacter::OnRep_PlayerState()
@@ -99,7 +119,6 @@ void ABequestPlayerCharacter::GetLifetimeReplicatedProps(TArray<class FLifetimeP
 	DOREPLIFETIME(ABequestPlayerCharacter, EquipmentColorIndex);
 }
 
-
 void ABequestPlayerCharacter::OnRep_EquipmentColorIndex()
 {
 	SetEquipmentColor(EquipmentColorIndex);
@@ -115,7 +134,6 @@ void ABequestPlayerCharacter::SetEquipmentColor(int8 ColorIndex)
 			BackDynamicMaterial->SetScalarParameterValue(FName("ColorIndex"), ColorIndex);
 		}
 	}
-
 	if (HeadEquipment)
 	{
 		UMaterialInstanceDynamic* HeadDynamicMaterial = HeadEquipment->CreateAndSetMaterialInstanceDynamic(0);

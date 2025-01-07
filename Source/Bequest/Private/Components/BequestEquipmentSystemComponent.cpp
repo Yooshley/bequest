@@ -25,7 +25,7 @@ void UBequestEquipmentSystemComponent::GetLifetimeReplicatedProps(TArray<class F
 	DOREPLIFETIME(ThisClass, EquippedEquipmentTag);
 }
 
-void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* Equipment, bool bRegisterEquipped)
+void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* Equipment)
 {
 	check(Equipment);
 	check(Equipment->GetEquipmentData().EquipmentTag.IsValid()); 
@@ -34,11 +34,6 @@ void UBequestEquipmentSystemComponent::RegisterEquipment(ABequestEquipmentBase* 
 
 	Equipment->OnEquipmentHitTargetBegin.BindUObject(this, &ThisClass::OnEquipmentHitTargetActorBegin);
 	Equipment->OnEquipmentHitTargetEnd.BindUObject(this, &ThisClass::OnEquipmentHitTargetActorEnd);
-	
-	if(bRegisterEquipped)
-	{
-		EquippedEquipmentTag = Equipment->GetEquipmentData().EquipmentTag;
-	}
 }
 
 ABequestEquipmentBase* UBequestEquipmentSystemComponent::GetCarriedEquipmentByTag(FGameplayTag EquipmentTag) const

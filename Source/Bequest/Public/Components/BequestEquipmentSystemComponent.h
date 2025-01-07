@@ -24,7 +24,7 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 	
 	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
-	void RegisterEquipment(ABequestEquipmentBase* Equipment, bool bRegisterEquipped = false);
+	void RegisterEquipment(ABequestEquipmentBase* Equipment);
 
 	UFUNCTION(BlueprintCallable, Category = "Bequest|EquipmentSystem")
 	ABequestEquipmentBase* GetCarriedEquipmentByTag(FGameplayTag EquipmentTag) const;
