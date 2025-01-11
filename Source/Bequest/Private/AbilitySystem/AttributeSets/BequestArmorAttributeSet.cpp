@@ -12,6 +12,7 @@ UBequestArmorAttributeSet::UBequestArmorAttributeSet()
 {
 	MaximumArmor = 0.f;
 	CurrentArmor = 0.f;
+	FinalArmorDamage = 0.f;
 }
 
 void UBequestArmorAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -28,10 +29,10 @@ void UBequestArmorAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 {
 	Super::PostGameplayEffectExecute(Data);
 
-	if (Data.EvaluatedData.Attribute == GetArmorDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetFinalArmorDamageAttribute())
 	{
-		const float LocalDamageDone = GetArmorDamage();
-		//SetArmorDamage(0.f);
+		const float LocalDamageDone = GetFinalArmorDamage();
+		SetFinalArmorDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
 			const float NewHealth = GetCurrentArmor() - LocalDamageDone;

@@ -100,19 +100,19 @@ void UBequestGameplayAbilityBase::ApplyDamage(FGameplayEventData EventData, TSub
 	
 	if (UBequestFunctionLibrary::NativeCheckTagOnActor(TargetActor, BequestGameplayTags::Character_State_Guarded) && bIsFront && TargetGuardAttributeValue > 0)
 	{
-		DamageAttribute = UBequestGuardAttributeSet::GetGuardDamageAttribute();
+		DamageAttribute = UBequestGuardAttributeSet::GetBaseGuardDamageAttribute();
 		DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Guard;
 		DamageEventTag = BequestGameplayTags::Character_Event_Block;
 	}
 	else if (UBequestFunctionLibrary::NativeCheckTagOnActor(TargetActor, BequestGameplayTags::Character_State_Armored) && TargetArmorAttributeValue > 0)
 	{
-		DamageAttribute = UBequestArmorAttributeSet::GetArmorDamageAttribute();
+		DamageAttribute = UBequestArmorAttributeSet::GetBaseArmorDamageAttribute();
 		DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Armor;
 		DamageEventTag = BequestGameplayTags::Character_Event_Absorb;
 	}
 	else
 	{
-		DamageAttribute = UBequestLifeAttributeSet::GetLifeDamageAttribute();
+		DamageAttribute = UBequestLifeAttributeSet::GetBaseLifeDamageAttribute();
 		DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Life;
 		if (Multiplier > 1)
 		{

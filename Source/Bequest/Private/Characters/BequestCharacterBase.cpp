@@ -15,6 +15,8 @@ ABequestCharacterBase::ABequestCharacterBase()
 {
 	bReplicates = true;
     bAlwaysRelevant = true;
+	SetNetUpdateFrequency(66.f);
+	SetMinNetUpdateFrequency(33.f);
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 

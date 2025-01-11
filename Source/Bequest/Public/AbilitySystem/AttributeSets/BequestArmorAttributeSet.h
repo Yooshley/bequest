@@ -24,8 +24,12 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Armor Attribute Set", meta = (HideFromLevelInfos))
-	FGameplayAttributeData ArmorDamage;
-	ATTRIBUTE_ACCESSORS(UBequestArmorAttributeSet, ArmorDamage)
+	FGameplayAttributeData BaseArmorDamage;
+	ATTRIBUTE_ACCESSORS(UBequestArmorAttributeSet, BaseArmorDamage)
+
+	UPROPERTY(BlueprintReadOnly, Category = "Armor Attribute Set", meta = (HideFromLevelInfos))
+	FGameplayAttributeData FinalArmorDamage;
+	ATTRIBUTE_ACCESSORS(UBequestArmorAttributeSet, FinalArmorDamage)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Armor Attribute Set", ReplicatedUsing = OnRep_CurrentArmor)
 	FGameplayAttributeData CurrentArmor;

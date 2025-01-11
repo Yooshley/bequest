@@ -12,6 +12,7 @@ UBequestGuardAttributeSet::UBequestGuardAttributeSet()
 	MaximumGuard = 0.f;
 	CurrentGuard = 0.f;
 	GuardRegeneration = 0.f;
+	FinalGuardDamage = 0.f;
 }
 
 void UBequestGuardAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -30,10 +31,10 @@ void UBequestGuardAttributeSet::PostGameplayEffectExecute(const FGameplayEffectM
 
 	if (GetMaximumGuard() == 0) return;
 
-	if (Data.EvaluatedData.Attribute == GetGuardDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetFinalGuardDamageAttribute())
 	{
-		const float LocalDamageDone = GetGuardDamage();
-		//SetGuardDamage(0.f);
+		const float LocalDamageDone = GetFinalGuardDamage();
+		SetFinalGuardDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
 			const float NewHealth = GetCurrentGuard() - LocalDamageDone;

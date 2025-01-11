@@ -10,15 +10,15 @@
 
 struct FBequestDamageCapture
 {
-	DECLARE_ATTRIBUTE_CAPTUREDEF(LifeDamage)
-	DECLARE_ATTRIBUTE_CAPTUREDEF(ArmorDamage)
-	DECLARE_ATTRIBUTE_CAPTUREDEF(GuardDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(FinalLifeDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(FinalArmorDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(FinalGuardDamage)
 
 	FBequestDamageCapture()
 	{
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestLifeAttributeSet, LifeDamage, Source, false);
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestArmorAttributeSet, ArmorDamage, Source, false);
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestGuardAttributeSet, GuardDamage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestLifeAttributeSet, FinalLifeDamage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestArmorAttributeSet, FinalArmorDamage, Source, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestGuardAttributeSet, FinalGuardDamage, Source, false);
 	}
 };
 
@@ -31,9 +31,9 @@ static FBequestDamageCapture GetDamageCapture()
 
 UGEExecCalc_Damage::UGEExecCalc_Damage()
 {
-	RelevantAttributesToCapture.Add(GetDamageCapture().LifeDamageDef);
-	RelevantAttributesToCapture.Add(GetDamageCapture().ArmorDamageDef);
-	RelevantAttributesToCapture.Add(GetDamageCapture().GuardDamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().FinalLifeDamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().FinalArmorDamageDef);
+	RelevantAttributesToCapture.Add(GetDamageCapture().FinalGuardDamageDef);
 }
 
 void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -52,17 +52,17 @@ void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecu
 		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Life))
 		{
 			Damage = TagMagnitude.Value;
-			DamageType = GetDamageCapture().LifeDamageProperty;
+			DamageType = GetDamageCapture().FinalLifeDamageProperty;
 		}
 		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Armor))
 		{
 			Damage = TagMagnitude.Value;
-			DamageType = GetDamageCapture().ArmorDamageProperty;
+			DamageType = GetDamageCapture().FinalArmorDamageProperty;
 		}
 		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Guard))
 		{
 			Damage = TagMagnitude.Value;
-			DamageType = GetDamageCapture().GuardDamageProperty;
+			DamageType = GetDamageCapture().FinalGuardDamageProperty;
 		}
 	}
 

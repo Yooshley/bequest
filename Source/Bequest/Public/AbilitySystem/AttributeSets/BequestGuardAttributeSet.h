@@ -24,8 +24,12 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Guard Attribute Set", meta = (HideFromLevelInfos))
-	FGameplayAttributeData GuardDamage;
-	ATTRIBUTE_ACCESSORS(UBequestGuardAttributeSet, GuardDamage)
+	FGameplayAttributeData BaseGuardDamage;
+	ATTRIBUTE_ACCESSORS(UBequestGuardAttributeSet, BaseGuardDamage)
+
+	UPROPERTY(BlueprintReadOnly, Category = "Guard Attribute Set", meta = (HideFromLevelInfos))
+	FGameplayAttributeData FinalGuardDamage;
+	ATTRIBUTE_ACCESSORS(UBequestGuardAttributeSet, FinalGuardDamage)
 
 	UPROPERTY(BlueprintReadOnly, Category = "Guard Attribute Set", meta = (HideFromLevelInfos))
 	FGameplayAttributeData Recovery;

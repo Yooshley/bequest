@@ -13,6 +13,7 @@ UBequestLifeAttributeSet::UBequestLifeAttributeSet()
 {
 	CurrentLife = 0.f;
 	MaximumLife = 0.f;
+	BaseLifeDamage = 0.f;
 }
 
 void UBequestLifeAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -29,10 +30,10 @@ void UBequestLifeAttributeSet::PostGameplayEffectExecute(const FGameplayEffectMo
 {
 	Super::PostGameplayEffectExecute(Data);
 	
-	if (Data.EvaluatedData.Attribute == GetLifeDamageAttribute())
+	if (Data.EvaluatedData.Attribute == GetFinalLifeDamageAttribute())
 	{
-		const float LocalDamageDone = GetLifeDamage();
-		//SetLifeDamage(0.f);
+		const float LocalDamageDone = GetFinalLifeDamage();
+		SetFinalLifeDamage(0.f);
 		if (LocalDamageDone > 0.0f)
 		{
 			const float NewLife = GetCurrentLife() - LocalDamageDone;
