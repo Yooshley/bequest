@@ -6,10 +6,9 @@
 /NAME:"UnrealEditor-AdvancedSessions.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"M:\Repos\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.1.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.3.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\PerModuleInline.gen.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Default.rc2.res"
-/OUT:"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\UnrealEditor-AdvancedSessions.lib"
+"C:\Users\ashym\Documents\GitHub\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.1.cpp.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.3.cpp.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Default.rc2.res"
+/OUT:"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\UnrealEditor-AdvancedSessions.lib"

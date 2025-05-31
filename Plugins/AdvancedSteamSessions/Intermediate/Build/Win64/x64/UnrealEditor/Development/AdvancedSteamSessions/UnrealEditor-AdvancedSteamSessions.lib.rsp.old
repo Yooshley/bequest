@@ -6,8 +6,7 @@
 /NAME:"UnrealEditor-AdvancedSteamSessions.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"M:\Repos\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"M:\Repos\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\Module.AdvancedSteamSessions.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\PerModuleInline.gen.cpp.obj"
-"M:\Repos\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\Default.rc2.res"
-/OUT:"M:\Repos\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\UnrealEditor-AdvancedSteamSessions.lib"
+"C:\Users\ashym\Documents\GitHub\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\Module.AdvancedSteamSessions.cpp.obj"
+"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\Default.rc2.res"
+/OUT:"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSteamSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSteamSessions\UnrealEditor-AdvancedSteamSessions.lib"
