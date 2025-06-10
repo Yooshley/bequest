@@ -5,10 +5,17 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "AdvancedSessionsLibrary.h"
+
+#ifdef ADVANCEDSESSIONS_AdvancedSessionsLibrary_generated_h
+#error "AdvancedSessionsLibrary.generated.h already included, missing '#pragma once' in AdvancedSessionsLibrary.h"
+#endif
+#define ADVANCEDSESSIONS_AdvancedSessionsLibrary_generated_h
+
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
 class APlayerController;
 class APlayerState;
 class UObject;
@@ -21,11 +28,8 @@ struct FBPUniqueNetId;
 struct FSessionPropertyKeyPair;
 struct FSessionsSearchSetting;
 struct FUniqueNetIdRepl;
-#ifdef ADVANCEDSESSIONS_AdvancedSessionsLibrary_generated_h
-#error "AdvancedSessionsLibrary.generated.h already included, missing '#pragma once' in AdvancedSessionsLibrary.h"
-#endif
-#define ADVANCEDSESSIONS_AdvancedSessionsLibrary_generated_h
 
+// ********** Begin Class UAdvancedSessionsLibrary *************************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedSessionsLibrary_h_32_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execServerTravel); \
 	DECLARE_FUNCTION(execHasOnlineSubsystem); \
@@ -67,23 +71,25 @@ struct FUniqueNetIdRepl;
 	DECLARE_FUNCTION(execKickPlayer);
 
 
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAdvancedSessionsLibrary_NoRegister();
+
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedSessionsLibrary_h_32_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUAdvancedSessionsLibrary(); \
 	friend struct Z_Construct_UClass_UAdvancedSessionsLibrary_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAdvancedSessionsLibrary_NoRegister(); \
 public: \
-	DECLARE_CLASS(UAdvancedSessionsLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), NO_API) \
+	DECLARE_CLASS2(UAdvancedSessionsLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UAdvancedSessionsLibrary_NoRegister) \
 	DECLARE_SERIALIZER(UAdvancedSessionsLibrary)
 
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedSessionsLibrary_h_32_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UAdvancedSessionsLibrary(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UAdvancedSessionsLibrary(UAdvancedSessionsLibrary&&); \
-	UAdvancedSessionsLibrary(const UAdvancedSessionsLibrary&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UAdvancedSessionsLibrary(UAdvancedSessionsLibrary&&) = delete; \
+	UAdvancedSessionsLibrary(const UAdvancedSessionsLibrary&) = delete; \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAdvancedSessionsLibrary); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAdvancedSessionsLibrary); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAdvancedSessionsLibrary) \
@@ -101,10 +107,11 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UAdvancedSessionsLibrary>();
+class UAdvancedSessionsLibrary;
+
+// ********** End Class UAdvancedSessionsLibrary ***************************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedSessionsLibrary_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

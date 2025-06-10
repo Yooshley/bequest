@@ -5,28 +5,36 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "CancelFindSessionsCallbackProxy.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class APlayerController;
-class UCancelFindSessionsCallbackProxy;
-class UObject;
 #ifdef ADVANCEDSESSIONS_CancelFindSessionsCallbackProxy_generated_h
 #error "CancelFindSessionsCallbackProxy.generated.h already included, missing '#pragma once' in CancelFindSessionsCallbackProxy.h"
 #endif
 #define ADVANCEDSESSIONS_CancelFindSessionsCallbackProxy_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class APlayerController;
+class UCancelFindSessionsCallbackProxy;
+class UObject;
+
+// ********** Begin Class UCancelFindSessionsCallbackProxy *****************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_CancelFindSessionsCallbackProxy_h_12_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execCancelFindSessions);
 
+
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UCancelFindSessionsCallbackProxy_NoRegister();
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_CancelFindSessionsCallbackProxy_h_12_INCLASS \
 private: \
 	static void StaticRegisterNativesUCancelFindSessionsCallbackProxy(); \
 	friend struct Z_Construct_UClass_UCancelFindSessionsCallbackProxy_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UCancelFindSessionsCallbackProxy_NoRegister(); \
 public: \
-	DECLARE_CLASS(UCancelFindSessionsCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(UCancelFindSessionsCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UCancelFindSessionsCallbackProxy_NoRegister) \
 	DECLARE_SERIALIZER(UCancelFindSessionsCallbackProxy)
 
 
@@ -36,11 +44,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UCancelFindSessionsCallbackProxy) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, UCancelFindSessionsCallbackProxy); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UCancelFindSessionsCallbackProxy); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UCancelFindSessionsCallbackProxy(UCancelFindSessionsCallbackProxy&&); \
-	UCancelFindSessionsCallbackProxy(const UCancelFindSessionsCallbackProxy&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UCancelFindSessionsCallbackProxy(UCancelFindSessionsCallbackProxy&&) = delete; \
+	UCancelFindSessionsCallbackProxy(const UCancelFindSessionsCallbackProxy&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~UCancelFindSessionsCallbackProxy();
 
 
@@ -55,10 +61,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UCancelFindSessionsCallbackProxy>();
+class UCancelFindSessionsCallbackProxy;
+
+// ********** End Class UCancelFindSessionsCallbackProxy *******************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_CancelFindSessionsCallbackProxy_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,17 +1,18 @@
-"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp"
-/FI"C:\Users\ashym\Documents\GitHub\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
-/FI"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Definitions.AdvancedSessions.h"
-/Yu"C:\Users\ashym\Documents\GitHub\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
-/Fp"C:\Users\ashym\Documents\GitHub\bequest\Intermediate\Build\Win64\x64\BequestEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.pch"
-/Fo"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp.obj"
-/experimental:log "C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp.sarif"
-/sourceDependencies "C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\Module.AdvancedSessions.2.cpp.dep.json"
-@"C:\Users\ashym\Documents\GitHub\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealEditor\Development\AdvancedSessions\AdvancedSessions.Shared.rsp"
+"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/Module.AdvancedSessions.2.cpp"
+@"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/AdvancedSessions.Shared.rsp"
+/FI"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/BequestEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h"
+/FI"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/Definitions.AdvancedSessions.h"
+/Yu"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/BequestEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h"
+/Fp"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/BequestEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h.pch"
+/Fo"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/Module.AdvancedSessions.2.cpp.obj"
+/experimental:log "C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/Module.AdvancedSessions.2.cpp.sarif"
+/sourceDependencies "C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealEditor/Development/AdvancedSessions/Module.AdvancedSessions.2.cpp.dep.json"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo
 /Oi
 /FC
+/diagnostics:caret
 /c
 /Gw
 /Gy
@@ -39,15 +40,14 @@
 /fp:fast
 /Zo
 /Zp8
+/W4
 /we4456
 /we4458
 /we4459
-/we4668
 /wd4244
 /wd4838
 /TP
 /GR-
-/W4
 /std:c++20
 /Zc:preprocessor
 /wd5054

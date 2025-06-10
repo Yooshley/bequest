@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.5",
+	"EngineAssociation": "5.6",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -30,7 +30,7 @@
 		},
 		{
 			"Name": "AnimModTool",
-			"Enabled": true,
+			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/298f68da04b9401297b798a4d58bee6a"
 		},
 		{
@@ -53,13 +53,13 @@
 			]
 		},
 		{
-			"Name": "AdvancedFadeObjects",
-			"Enabled": true
-		},
-		{
 			"Name": "UINavigation",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/b9ee9669c98146cd8433a62ea7f23699"
+		},
+		{
+			"Name": "AdvancedFadeObjects",
+			"Enabled": false
 		}
 	]
 }

@@ -5,21 +5,28 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "AdvancedGameSession.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #ifdef ADVANCEDSESSIONS_AdvancedGameSession_generated_h
 #error "AdvancedGameSession.generated.h already included, missing '#pragma once' in AdvancedGameSession.h"
 #endif
 #define ADVANCEDSESSIONS_AdvancedGameSession_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+// ********** Begin Class AAdvancedGameSession *****************************************************
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_AAdvancedGameSession_NoRegister();
+
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedGameSession_h_26_INCLASS \
 private: \
 	static void StaticRegisterNativesAAdvancedGameSession(); \
 	friend struct Z_Construct_UClass_AAdvancedGameSession_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_AAdvancedGameSession_NoRegister(); \
 public: \
-	DECLARE_CLASS(AAdvancedGameSession, AGameSession, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), NO_API) \
+	DECLARE_CLASS2(AAdvancedGameSession, AGameSession, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_AAdvancedGameSession_NoRegister) \
 	DECLARE_SERIALIZER(AAdvancedGameSession)
 
 
@@ -29,11 +36,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AAdvancedGameSession) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AAdvancedGameSession); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AAdvancedGameSession); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	AAdvancedGameSession(AAdvancedGameSession&&); \
-	AAdvancedGameSession(const AAdvancedGameSession&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	AAdvancedGameSession(AAdvancedGameSession&&) = delete; \
+	AAdvancedGameSession(const AAdvancedGameSession&) = delete; \
 	NO_API virtual ~AAdvancedGameSession();
 
 
@@ -47,10 +52,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class AAdvancedGameSession>();
+class AAdvancedGameSession;
+
+// ********** End Class AAdvancedGameSession *******************************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedGameSession_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

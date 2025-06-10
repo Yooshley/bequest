@@ -5,17 +5,21 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "AdvancedVoiceLibrary.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UObject;
-struct FBPUniqueNetId;
 #ifdef ADVANCEDSESSIONS_AdvancedVoiceLibrary_generated_h
 #error "AdvancedVoiceLibrary.generated.h already included, missing '#pragma once' in AdvancedVoiceLibrary.h"
 #endif
 #define ADVANCEDSESSIONS_AdvancedVoiceLibrary_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class UObject;
+struct FBPUniqueNetId;
+
+// ********** Begin Class UAdvancedVoiceLibrary ****************************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedVoiceLibrary_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetNumLocalTalkers); \
 	DECLARE_FUNCTION(execUnMuteRemoteTalker); \
@@ -35,23 +39,25 @@ struct FBPUniqueNetId;
 	DECLARE_FUNCTION(execIsHeadsetPresent);
 
 
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAdvancedVoiceLibrary_NoRegister();
+
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedVoiceLibrary_h_29_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUAdvancedVoiceLibrary(); \
 	friend struct Z_Construct_UClass_UAdvancedVoiceLibrary_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAdvancedVoiceLibrary_NoRegister(); \
 public: \
-	DECLARE_CLASS(UAdvancedVoiceLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), NO_API) \
+	DECLARE_CLASS2(UAdvancedVoiceLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UAdvancedVoiceLibrary_NoRegister) \
 	DECLARE_SERIALIZER(UAdvancedVoiceLibrary)
 
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedVoiceLibrary_h_29_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UAdvancedVoiceLibrary(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UAdvancedVoiceLibrary(UAdvancedVoiceLibrary&&); \
-	UAdvancedVoiceLibrary(const UAdvancedVoiceLibrary&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UAdvancedVoiceLibrary(UAdvancedVoiceLibrary&&) = delete; \
+	UAdvancedVoiceLibrary(const UAdvancedVoiceLibrary&) = delete; \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAdvancedVoiceLibrary); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAdvancedVoiceLibrary); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAdvancedVoiceLibrary) \
@@ -69,10 +75,11 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UAdvancedVoiceLibrary>();
+class UAdvancedVoiceLibrary;
+
+// ********** End Class UAdvancedVoiceLibrary ******************************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AdvancedVoiceLibrary_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
