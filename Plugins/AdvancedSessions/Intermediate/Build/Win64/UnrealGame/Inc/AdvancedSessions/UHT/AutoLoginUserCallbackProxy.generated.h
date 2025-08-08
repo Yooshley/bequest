@@ -5,27 +5,35 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "AutoLoginUserCallbackProxy.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UAutoLoginUserCallbackProxy;
-class UObject;
 #ifdef ADVANCEDSESSIONS_AutoLoginUserCallbackProxy_generated_h
 #error "AutoLoginUserCallbackProxy.generated.h already included, missing '#pragma once' in AutoLoginUserCallbackProxy.h"
 #endif
 #define ADVANCEDSESSIONS_AutoLoginUserCallbackProxy_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class UAutoLoginUserCallbackProxy;
+class UObject;
+
+// ********** Begin Class UAutoLoginUserCallbackProxy **********************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AutoLoginUserCallbackProxy_h_13_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execAutoLoginUser);
 
+
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAutoLoginUserCallbackProxy_NoRegister();
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AutoLoginUserCallbackProxy_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesUAutoLoginUserCallbackProxy(); \
 	friend struct Z_Construct_UClass_UAutoLoginUserCallbackProxy_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UAutoLoginUserCallbackProxy_NoRegister(); \
 public: \
-	DECLARE_CLASS(UAutoLoginUserCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(UAutoLoginUserCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UAutoLoginUserCallbackProxy_NoRegister) \
 	DECLARE_SERIALIZER(UAutoLoginUserCallbackProxy)
 
 
@@ -35,11 +43,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAutoLoginUserCallbackProxy) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, UAutoLoginUserCallbackProxy); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAutoLoginUserCallbackProxy); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UAutoLoginUserCallbackProxy(UAutoLoginUserCallbackProxy&&); \
-	UAutoLoginUserCallbackProxy(const UAutoLoginUserCallbackProxy&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UAutoLoginUserCallbackProxy(UAutoLoginUserCallbackProxy&&) = delete; \
+	UAutoLoginUserCallbackProxy(const UAutoLoginUserCallbackProxy&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~UAutoLoginUserCallbackProxy();
 
 
@@ -54,10 +60,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UAutoLoginUserCallbackProxy>();
+class UAutoLoginUserCallbackProxy;
+
+// ********** End Class UAutoLoginUserCallbackProxy ************************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_AutoLoginUserCallbackProxy_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

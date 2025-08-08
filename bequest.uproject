@@ -61,5 +61,8 @@
 			"Name": "AdvancedFadeObjects",
 			"Enabled": false
 		}
+	],
+	"TargetPlatforms": [
+		"Windows"
 	]
 }

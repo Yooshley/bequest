@@ -1,17 +1,18 @@
-"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\UnrealGame\Inc\AdvancedSessions\UHT\AdvancedSessions.init.gen.cpp"
-/FI"M:\Repos\bequest\Intermediate\Build\Win64\x64\Bequest\Shipping\Engine\SharedPCH.Engine.Project.ValApi.Cpp20.h"
-/FI"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealGame\Shipping\AdvancedSessions\Definitions.AdvancedSessions.h"
-/Yu"M:\Repos\bequest\Intermediate\Build\Win64\x64\Bequest\Shipping\Engine\SharedPCH.Engine.Project.ValApi.Cpp20.h"
-/Fp"M:\Repos\bequest\Intermediate\Build\Win64\x64\Bequest\Shipping\Engine\SharedPCH.Engine.Project.ValApi.Cpp20.h.pch"
-/Fo"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealGame\Shipping\AdvancedSessions\AdvancedSessions.init.gen.cpp.obj"
-/experimental:log "M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealGame\Shipping\AdvancedSessions\AdvancedSessions.init.gen.cpp.sarif"
-/sourceDependencies "M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealGame\Shipping\AdvancedSessions\AdvancedSessions.init.gen.cpp.dep.json"
-@"M:\Repos\bequest\Plugins\AdvancedSessions\Intermediate\Build\Win64\x64\UnrealGame\Shipping\AdvancedSessions\AdvancedSessions.Shared.rsp"
+"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/UnrealGame/Inc/AdvancedSessions/UHT/AdvancedSessions.init.gen.cpp"
+@"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealGame/Shipping/AdvancedSessions/AdvancedSessions.Shared.rsp"
+/FI"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/Bequest/Shipping/Engine/SharedPCH.Engine.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h"
+/FI"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealGame/Shipping/AdvancedSessions/Definitions.AdvancedSessions.h"
+/Yu"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/Bequest/Shipping/Engine/SharedPCH.Engine.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h"
+/Fp"C:/Users/ashym/Documents/GitHub/bequest/Intermediate/Build/Win64/x64/Bequest/Shipping/Engine/SharedPCH.Engine.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_5.h.pch"
+/Fo"C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealGame/Shipping/AdvancedSessions/AdvancedSessions.init.gen.cpp.obj"
+/experimental:log "C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealGame/Shipping/AdvancedSessions/AdvancedSessions.init.gen.cpp.sarif"
+/sourceDependencies "C:/Users/ashym/Documents/GitHub/bequest/Plugins/AdvancedSessions/Intermediate/Build/Win64/x64/UnrealGame/Shipping/AdvancedSessions/AdvancedSessions.init.gen.cpp.dep.json"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo
 /Oi
 /FC
+/diagnostics:caret
 /c
 /Gw
 /Gy
@@ -40,15 +41,15 @@
 /fp:fast
 /Zo
 /Zp8
+/W4
 /we4456
 /we4458
 /we4459
-/we4668
 /wd4244
 /wd4838
+/wd5048
 /TP
 /GR-
-/W4
 /std:c++20
 /Zc:preprocessor
 /wd5054

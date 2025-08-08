@@ -5,28 +5,36 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "UpdateSessionCallbackProxyAdvanced.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UObject;
-class UUpdateSessionCallbackProxyAdvanced;
-struct FSessionPropertyKeyPair;
 #ifdef ADVANCEDSESSIONS_UpdateSessionCallbackProxyAdvanced_generated_h
 #error "UpdateSessionCallbackProxyAdvanced.generated.h already included, missing '#pragma once' in UpdateSessionCallbackProxyAdvanced.h"
 #endif
 #define ADVANCEDSESSIONS_UpdateSessionCallbackProxyAdvanced_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class UObject;
+class UUpdateSessionCallbackProxyAdvanced;
+struct FSessionPropertyKeyPair;
+
+// ********** Begin Class UUpdateSessionCallbackProxyAdvanced **************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_UpdateSessionCallbackProxyAdvanced_h_12_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execUpdateSession);
 
+
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UUpdateSessionCallbackProxyAdvanced_NoRegister();
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_UpdateSessionCallbackProxyAdvanced_h_12_INCLASS \
 private: \
 	static void StaticRegisterNativesUUpdateSessionCallbackProxyAdvanced(); \
 	friend struct Z_Construct_UClass_UUpdateSessionCallbackProxyAdvanced_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UUpdateSessionCallbackProxyAdvanced_NoRegister(); \
 public: \
-	DECLARE_CLASS(UUpdateSessionCallbackProxyAdvanced, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(UUpdateSessionCallbackProxyAdvanced, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UUpdateSessionCallbackProxyAdvanced_NoRegister) \
 	DECLARE_SERIALIZER(UUpdateSessionCallbackProxyAdvanced)
 
 
@@ -36,11 +44,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UUpdateSessionCallbackProxyAdvanced) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, UUpdateSessionCallbackProxyAdvanced); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UUpdateSessionCallbackProxyAdvanced); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UUpdateSessionCallbackProxyAdvanced(UUpdateSessionCallbackProxyAdvanced&&); \
-	UUpdateSessionCallbackProxyAdvanced(const UUpdateSessionCallbackProxyAdvanced&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UUpdateSessionCallbackProxyAdvanced(UUpdateSessionCallbackProxyAdvanced&&) = delete; \
+	UUpdateSessionCallbackProxyAdvanced(const UUpdateSessionCallbackProxyAdvanced&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~UUpdateSessionCallbackProxyAdvanced();
 
 
@@ -55,10 +61,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UUpdateSessionCallbackProxyAdvanced>();
+class UUpdateSessionCallbackProxyAdvanced;
+
+// ********** End Class UUpdateSessionCallbackProxyAdvanced ****************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_UpdateSessionCallbackProxyAdvanced_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

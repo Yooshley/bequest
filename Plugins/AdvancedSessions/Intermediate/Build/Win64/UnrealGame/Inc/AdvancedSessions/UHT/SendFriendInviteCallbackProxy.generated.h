@@ -5,33 +5,44 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "SendFriendInviteCallbackProxy.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class APlayerController;
-class UObject;
-class USendFriendInviteCallbackProxy;
-struct FBPUniqueNetId;
 #ifdef ADVANCEDSESSIONS_SendFriendInviteCallbackProxy_generated_h
 #error "SendFriendInviteCallbackProxy.generated.h already included, missing '#pragma once' in SendFriendInviteCallbackProxy.h"
 #endif
 #define ADVANCEDSESSIONS_SendFriendInviteCallbackProxy_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class APlayerController;
+class UObject;
+class USendFriendInviteCallbackProxy;
+struct FBPUniqueNetId;
+
+// ********** Begin Delegate FBlueprintSendFriendInviteDelegate ************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_SendFriendInviteCallbackProxy_h_11_DELEGATE \
 ADVANCEDSESSIONS_API void FBlueprintSendFriendInviteDelegate_DelegateWrapper(const FMulticastScriptDelegate& BlueprintSendFriendInviteDelegate);
 
 
+// ********** End Delegate FBlueprintSendFriendInviteDelegate **************************************
+
+// ********** Begin Class USendFriendInviteCallbackProxy *******************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_SendFriendInviteCallbackProxy_h_16_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execSendFriendInvite);
 
+
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_USendFriendInviteCallbackProxy_NoRegister();
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_SendFriendInviteCallbackProxy_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesUSendFriendInviteCallbackProxy(); \
 	friend struct Z_Construct_UClass_USendFriendInviteCallbackProxy_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_USendFriendInviteCallbackProxy_NoRegister(); \
 public: \
-	DECLARE_CLASS(USendFriendInviteCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(USendFriendInviteCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_USendFriendInviteCallbackProxy_NoRegister) \
 	DECLARE_SERIALIZER(USendFriendInviteCallbackProxy)
 
 
@@ -41,11 +52,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USendFriendInviteCallbackProxy) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, USendFriendInviteCallbackProxy); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USendFriendInviteCallbackProxy); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	USendFriendInviteCallbackProxy(USendFriendInviteCallbackProxy&&); \
-	USendFriendInviteCallbackProxy(const USendFriendInviteCallbackProxy&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	USendFriendInviteCallbackProxy(USendFriendInviteCallbackProxy&&) = delete; \
+	USendFriendInviteCallbackProxy(const USendFriendInviteCallbackProxy&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~USendFriendInviteCallbackProxy();
 
 
@@ -60,10 +69,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class USendFriendInviteCallbackProxy>();
+class USendFriendInviteCallbackProxy;
+
+// ********** End Class USendFriendInviteCallbackProxy *********************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_SendFriendInviteCallbackProxy_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

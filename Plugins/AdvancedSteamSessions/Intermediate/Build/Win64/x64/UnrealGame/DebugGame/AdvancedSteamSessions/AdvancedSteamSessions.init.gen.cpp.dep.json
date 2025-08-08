@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\ashym\\documents\\github\\bequest\\plugins\\advancedsteamsessions\\intermediate\\build\\win64\\unrealgame\\inc\\advancedsteamsessions\\uht\\advancedsteamsessions.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\ashym\\documents\\github\\bequest\\intermediate\\build\\win64\\x64\\bequest\\debuggame\\engine\\sharedpch.engine.project.nonoptimized.valapi.valexpapi.cpp20.inclorderunreal5_5.h.pch",
+        "Includes": [
+            "c:\\users\\ashym\\documents\\github\\bequest\\plugins\\advancedsteamsessions\\intermediate\\build\\win64\\x64\\unrealgame\\debuggame\\advancedsteamsessions\\definitions.advancedsteamsessions.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

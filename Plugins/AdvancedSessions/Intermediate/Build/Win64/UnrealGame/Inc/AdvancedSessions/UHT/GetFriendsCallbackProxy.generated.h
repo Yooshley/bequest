@@ -5,33 +5,44 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "GetFriendsCallbackProxy.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/ScriptMacros.h"
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class APlayerController;
-class UGetFriendsCallbackProxy;
-class UObject;
-struct FBPFriendInfo;
 #ifdef ADVANCEDSESSIONS_GetFriendsCallbackProxy_generated_h
 #error "GetFriendsCallbackProxy.generated.h already included, missing '#pragma once' in GetFriendsCallbackProxy.h"
 #endif
 #define ADVANCEDSESSIONS_GetFriendsCallbackProxy_generated_h
 
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class APlayerController;
+class UGetFriendsCallbackProxy;
+class UObject;
+struct FBPFriendInfo;
+
+// ********** Begin Delegate FBlueprintGetFriendsListDelegate **************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_GetFriendsCallbackProxy_h_11_DELEGATE \
 ADVANCEDSESSIONS_API void FBlueprintGetFriendsListDelegate_DelegateWrapper(const FMulticastScriptDelegate& BlueprintGetFriendsListDelegate, TArray<FBPFriendInfo> const& Results);
 
 
+// ********** End Delegate FBlueprintGetFriendsListDelegate ****************************************
+
+// ********** Begin Class UGetFriendsCallbackProxy *************************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_GetFriendsCallbackProxy_h_16_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execGetAndStoreFriendsList);
 
+
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UGetFriendsCallbackProxy_NoRegister();
 
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_GetFriendsCallbackProxy_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesUGetFriendsCallbackProxy(); \
 	friend struct Z_Construct_UClass_UGetFriendsCallbackProxy_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UGetFriendsCallbackProxy_NoRegister(); \
 public: \
-	DECLARE_CLASS(UGetFriendsCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(UGetFriendsCallbackProxy, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UGetFriendsCallbackProxy_NoRegister) \
 	DECLARE_SERIALIZER(UGetFriendsCallbackProxy)
 
 
@@ -41,11 +52,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UGetFriendsCallbackProxy) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, UGetFriendsCallbackProxy); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UGetFriendsCallbackProxy); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UGetFriendsCallbackProxy(UGetFriendsCallbackProxy&&); \
-	UGetFriendsCallbackProxy(const UGetFriendsCallbackProxy&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UGetFriendsCallbackProxy(UGetFriendsCallbackProxy&&) = delete; \
+	UGetFriendsCallbackProxy(const UGetFriendsCallbackProxy&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~UGetFriendsCallbackProxy();
 
 
@@ -60,10 +69,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UGetFriendsCallbackProxy>();
+class UGetFriendsCallbackProxy;
+
+// ********** End Class UGetFriendsCallbackProxy ***************************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_GetFriendsCallbackProxy_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

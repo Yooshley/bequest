@@ -5,32 +5,40 @@
 ===========================================================================*/
 
 // IWYU pragma: private, include "FindSessionsCallbackProxyAdvanced.h"
+
+#ifdef ADVANCEDSESSIONS_FindSessionsCallbackProxyAdvanced_generated_h
+#error "FindSessionsCallbackProxyAdvanced.generated.h already included, missing '#pragma once' in FindSessionsCallbackProxyAdvanced.h"
+#endif
+#define ADVANCEDSESSIONS_FindSessionsCallbackProxyAdvanced_generated_h
+
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
 class APlayerController;
 class UFindSessionsCallbackProxyAdvanced;
 class UObject;
 enum class EBPServerPresenceSearchType : uint8;
 struct FBlueprintSessionResult;
 struct FSessionsSearchSetting;
-#ifdef ADVANCEDSESSIONS_FindSessionsCallbackProxyAdvanced_generated_h
-#error "FindSessionsCallbackProxyAdvanced.generated.h already included, missing '#pragma once' in FindSessionsCallbackProxyAdvanced.h"
-#endif
-#define ADVANCEDSESSIONS_FindSessionsCallbackProxyAdvanced_generated_h
 
+// ********** Begin Class UFindSessionsCallbackProxyAdvanced ***************************************
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_FindSessionsCallbackProxyAdvanced_h_19_RPC_WRAPPERS \
 	DECLARE_FUNCTION(execFilterSessionResults); \
 	DECLARE_FUNCTION(execFindSessionsAdvanced);
 
 
+ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UFindSessionsCallbackProxyAdvanced_NoRegister();
+
 #define FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_FindSessionsCallbackProxyAdvanced_h_19_INCLASS \
 private: \
 	static void StaticRegisterNativesUFindSessionsCallbackProxyAdvanced(); \
 	friend struct Z_Construct_UClass_UFindSessionsCallbackProxyAdvanced_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend ADVANCEDSESSIONS_API UClass* Z_Construct_UClass_UFindSessionsCallbackProxyAdvanced_NoRegister(); \
 public: \
-	DECLARE_CLASS(UFindSessionsCallbackProxyAdvanced, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), ADVANCEDSESSIONS_API) \
+	DECLARE_CLASS2(UFindSessionsCallbackProxyAdvanced, UOnlineBlueprintCallProxyBase, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/AdvancedSessions"), Z_Construct_UClass_UFindSessionsCallbackProxyAdvanced_NoRegister) \
 	DECLARE_SERIALIZER(UFindSessionsCallbackProxyAdvanced)
 
 
@@ -40,11 +48,9 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UFindSessionsCallbackProxyAdvanced) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(ADVANCEDSESSIONS_API, UFindSessionsCallbackProxyAdvanced); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UFindSessionsCallbackProxyAdvanced); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	UFindSessionsCallbackProxyAdvanced(UFindSessionsCallbackProxyAdvanced&&); \
-	UFindSessionsCallbackProxyAdvanced(const UFindSessionsCallbackProxyAdvanced&); \
-public: \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UFindSessionsCallbackProxyAdvanced(UFindSessionsCallbackProxyAdvanced&&) = delete; \
+	UFindSessionsCallbackProxyAdvanced(const UFindSessionsCallbackProxyAdvanced&) = delete; \
 	ADVANCEDSESSIONS_API virtual ~UFindSessionsCallbackProxyAdvanced();
 
 
@@ -59,10 +65,11 @@ public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> ADVANCEDSESSIONS_API UClass* StaticClass<class UFindSessionsCallbackProxyAdvanced>();
+class UFindSessionsCallbackProxyAdvanced;
+
+// ********** End Class UFindSessionsCallbackProxyAdvanced *****************************************
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_ashym_Documents_GitHub_bequest_Plugins_AdvancedSessions_Source_AdvancedSessions_Classes_FindSessionsCallbackProxyAdvanced_h
-
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
