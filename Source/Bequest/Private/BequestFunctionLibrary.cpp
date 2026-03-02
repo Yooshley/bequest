@@ -54,7 +54,7 @@ void UBequestFunctionLibrary::AddGameplayTagUnique(AActor* Actor, FGameplayTag T
 	if(!BequestASC->HasMatchingGameplayTag(Tag))
 	{
 		BequestASC->AddLooseGameplayTag(Tag); // Adding for server
-		BequestASC->AddReplicatedLooseGameplayTag(Tag);
+		//BequestASC->AddReplicatedGameplayTag(Tag);
 	}
 }
 
@@ -65,7 +65,7 @@ void UBequestFunctionLibrary::RemoveGameplayTag(AActor* Actor, FGameplayTag Tag)
 	if(BequestASC->HasMatchingGameplayTag(Tag))
 	{
 		BequestASC->RemoveLooseGameplayTag(Tag);  // Removing for server
-		BequestASC->RemoveReplicatedLooseGameplayTag(Tag);
+		//BequestASC->RemoveReplicatedLooseGameplayTag(Tag);
 	}
 }
 
