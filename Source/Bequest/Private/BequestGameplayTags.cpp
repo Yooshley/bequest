@@ -31,15 +31,16 @@ namespace BequestGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Dead, "Character.State.Dead");
 	UE_DEFINE_GAMEPLAY_TAG(Character_State_Invulnerable, "Character.State.Invulnerable"); //Blocks All Damage
 	
-	UE_DEFINE_GAMEPLAY_TAG(TH_Sword_Guard_Roof, "TH.Sword.Guard.Roof");
-	UE_DEFINE_GAMEPLAY_TAG(TH_Sword_Guard_Ox, "TH.Sword.Guard.Ox");
-	UE_DEFINE_GAMEPLAY_TAG(TH_Sword_Guard_Fool, "TH.Sword.Guard.Fool");
-	UE_DEFINE_GAMEPLAY_TAG(TH_Sword_Guard_Tail, "TH.Sword.Guard.Tail");
-	UE_DEFINE_GAMEPLAY_TAG(TH_Sword_Guard_Plow, "TH.Sword.Guard.Plow");
+	UE_DEFINE_GAMEPLAY_TAG(Guard_Warsword_Roof, "Guard.Warsword.Roof");
+	UE_DEFINE_GAMEPLAY_TAG(Guard_Warsword_Ochs, "Guard.Warsword.Ochs");
+	UE_DEFINE_GAMEPLAY_TAG(Guard_Warsword_Fool, "Guard.Warsword.Fool");
+	UE_DEFINE_GAMEPLAY_TAG(Guard_Warsword_Tail, "Guard.Warsword.Tail");
+	UE_DEFINE_GAMEPLAY_TAG(Guard_Warsword_Plow, "Guard.Warsword.Plow");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Equip, "Character.Event.Equip");
 	
-	UE_DEFINE_GAMEPLAY_TAG(Equipment_TH_Sword, "Equipment.TH.Sword");
+	UE_DEFINE_GAMEPLAY_TAG(Equipment_Warsword, "Equipment.Warsword");
+	UE_DEFINE_GAMEPLAY_TAG(Equipment_Armsword, "Equipment.Armsword");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Attack, "Character.Event.Attack");
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Attack_Light, "Character.Event.Attack.Light");
@@ -61,6 +62,5 @@ namespace BequestGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Character_Event_Death, "Character.Event.Death");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Character_SetByCaller_Damage_Life, "Character.SetByCaller.Damage.Life");
-	UE_DEFINE_GAMEPLAY_TAG(Character_SetByCaller_Damage_Armor, "Character.SetByCaller.Damage.Armor");
 	UE_DEFINE_GAMEPLAY_TAG(Character_SetByCaller_Damage_Guard, "Character.SetByCaller.Damage.Guard");
 }

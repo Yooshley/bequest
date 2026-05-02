@@ -4,7 +4,6 @@
 #include "Widgets/BequestAbilitySystemWidget.h"
 
 #include "AbilitySystemComponent.h"
-#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 
@@ -27,8 +26,6 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 		ResetDelegateHandle(MaximumGuardChangeDelegate, OldAbilitySystemComponent, UBequestGuardAttributeSet::GetMaximumGuardAttribute());
 		ResetDelegateHandle(CurrentGuardChangeDelegate, OldAbilitySystemComponent, UBequestGuardAttributeSet::GetCurrentGuardAttribute());
 		ResetDelegateHandle(GuardRegenerationChangeDelegate, OldAbilitySystemComponent, UBequestGuardAttributeSet::GetGuardRegenerationAttribute());
-		ResetDelegateHandle(MaximumArmorChangeDelegate, OldAbilitySystemComponent, UBequestArmorAttributeSet::GetMaximumArmorAttribute());
-		ResetDelegateHandle(CurrentArmorChangeDelegate, OldAbilitySystemComponent, UBequestArmorAttributeSet::GetCurrentArmorAttribute());
 	}
 
 	// Bind Life Attribute Delegates
@@ -68,21 +65,21 @@ bool UBequestAbilitySystemWidget::InitializeAbilitySystemWidget(UAbilitySystemCo
 	}
 
 	// Bind Armor Attribute Delegates
-	if (ListenForArmorAttributeSetChanges)
-	{
-		if (AbilitySystemComponent->HasAttributeSetForAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute()))
-		{
-			MaximumArmorChangeDelegate = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBequestArmorAttributeSet::GetMaximumArmorAttribute()).AddUObject(this, &UBequestAbilitySystemWidget::MaximumArmorChanged);
-			CurrentArmorChangeDelegate = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBequestArmorAttributeSet::GetCurrentArmorAttribute()).AddUObject(this, &UBequestAbilitySystemWidget::CurrentArmorChanged);
-
-			const float MaxArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute());
-			const float CurrentArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetCurrentArmorAttribute());
-				
-			// Blueprint Events to initialize the values
-			On_MaximumArmorChanged(MaxArmor, 0.0f, CurrentArmor / MaxArmor);
-			On_CurrentArmorChanged(CurrentArmor, 0.0f, CurrentArmor / MaxArmor);
-		}
-	}
+	// if (ListenForArmorAttributeSetChanges)
+	// {
+	// 	if (AbilitySystemComponent->HasAttributeSetForAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute()))
+	// 	{
+	// 		MaximumArmorChangeDelegate = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBequestArmorAttributeSet::GetMaximumArmorAttribute()).AddUObject(this, &UBequestAbilitySystemWidget::MaximumArmorChanged);
+	// 		CurrentArmorChangeDelegate = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBequestArmorAttributeSet::GetCurrentArmorAttribute()).AddUObject(this, &UBequestAbilitySystemWidget::CurrentArmorChanged);
+	//
+	// 		const float MaxArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute());
+	// 		const float CurrentArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetCurrentArmorAttribute());
+	// 			
+	// 		// Blueprint Events to initialize the values
+	// 		On_MaximumArmorChanged(MaxArmor, 0.0f, CurrentArmor / MaxArmor);
+	// 		On_CurrentArmorChanged(CurrentArmor, 0.0f, CurrentArmor / MaxArmor);
+	// 	}
+	// }
 	return true;
 }
 
@@ -120,17 +117,17 @@ void UBequestAbilitySystemWidget::GuardRegenerationChanged(const FOnAttributeCha
 	On_GuardRegenerationChanged(Data.NewValue, Data.OldValue);
 }
 
-void UBequestAbilitySystemWidget::MaximumArmorChanged(const FOnAttributeChangeData& Data)
-{
-	const float CurrentArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetCurrentArmorAttribute());
-	On_MaximumArmorChanged(Data.NewValue, Data.OldValue, CurrentArmor / Data.NewValue);
-}
-
-void UBequestAbilitySystemWidget::CurrentArmorChanged(const FOnAttributeChangeData& Data)
-{
-	const float MaximumArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute());
-	On_CurrentArmorChanged(Data.NewValue, Data.OldValue, Data.NewValue / MaximumArmor);
-}
+// void UBequestAbilitySystemWidget::MaximumArmorChanged(const FOnAttributeChangeData& Data)
+// {
+// 	const float CurrentArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetCurrentArmorAttribute());
+// 	On_MaximumArmorChanged(Data.NewValue, Data.OldValue, CurrentArmor / Data.NewValue);
+// }
+//
+// void UBequestAbilitySystemWidget::CurrentArmorChanged(const FOnAttributeChangeData& Data)
+// {
+// 	const float MaximumArmor = AbilitySystemComponent->GetNumericAttribute(UBequestArmorAttributeSet::GetMaximumArmorAttribute());
+// 	On_CurrentArmorChanged(Data.NewValue, Data.OldValue, Data.NewValue / MaximumArmor);
+// }
 
 void UBequestAbilitySystemWidget::ResetDelegateHandle(FDelegateHandle DelegateHandle, UAbilitySystemComponent* OldAbilitySystemComponent, const FGameplayAttribute& Attribute)
 {

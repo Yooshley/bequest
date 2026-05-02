@@ -7,7 +7,6 @@
 #include "BequestDebugHelper.h"
 #include "BequestFunctionLibrary.h"
 #include "BequestGameplayTags.h"
-#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 #include "Characters/BequestCharacterBase.h"
@@ -92,7 +91,6 @@ void UBequestGameplayAbilityBase::ApplyDamage(FGameplayEventData EventData, TSub
 
 	bool bSuccessfullyFoundAttribute;
 	const float TargetGuardAttributeValue = UAbilitySystemBlueprintLibrary::GetFloatAttributeFromAbilitySystemComponent(TargetASC, UBequestGuardAttributeSet::GetCurrentGuardAttribute(), bSuccessfullyFoundAttribute);
-	const float TargetArmorAttributeValue = UAbilitySystemBlueprintLibrary::GetFloatAttributeFromAbilitySystemComponent(TargetASC, UBequestArmorAttributeSet::GetCurrentArmorAttribute(), bSuccessfullyFoundAttribute);
 	
 	FGameplayAttribute DamageAttribute;
 	FGameplayTag DamageTypeTag;
@@ -104,12 +102,12 @@ void UBequestGameplayAbilityBase::ApplyDamage(FGameplayEventData EventData, TSub
 		DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Guard;
 		DamageEventTag = BequestGameplayTags::Character_Event_Block;
 	}
-	else if (UBequestFunctionLibrary::NativeCheckTagOnActor(TargetActor, BequestGameplayTags::Character_State_Armored) && TargetArmorAttributeValue > 0)
-	{
-		DamageAttribute = UBequestArmorAttributeSet::GetBaseArmorDamageAttribute();
-		DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Armor;
-		DamageEventTag = BequestGameplayTags::Character_Event_Absorb;
-	}
+	// else if (UBequestFunctionLibrary::NativeCheckTagOnActor(TargetActor, BequestGameplayTags::Character_State_Armored) && TargetArmorAttributeValue > 0)
+	// {
+	// 	DamageAttribute = UBequestArmorAttributeSet::GetBaseArmorDamageAttribute();
+	// 	DamageTypeTag = BequestGameplayTags::Character_SetByCaller_Damage_Armor;
+	// 	DamageEventTag = BequestGameplayTags::Character_Event_Absorb;
+	// }
 	else
 	{
 		DamageAttribute = UBequestLifeAttributeSet::GetBaseLifeDamageAttribute();

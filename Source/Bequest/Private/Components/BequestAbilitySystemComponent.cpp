@@ -4,14 +4,9 @@
 #include "Components/BequestAbilitySystemComponent.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
-#include "BequestFunctionLibrary.h"
-#include "BequestGameplayTags.h"
-#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
-#include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 #include "Data/AttributeSetDataTableRow.h"
 #include "Data/DataAsset_AbilityData.h"
-#include "Kismet/KismetMathLibrary.h"
 
 
 UBequestAbilitySystemComponent::UBequestAbilitySystemComponent()

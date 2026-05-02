@@ -4,7 +4,6 @@
 #include "AbilitySystem/EffectCalculations/GEExecCalc_Damage.h"
 
 #include "BequestGameplayTags.h"
-#include "AbilitySystem/AttributeSets/BequestArmorAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestGuardAttributeSet.h"
 #include "AbilitySystem/AttributeSets/BequestLifeAttributeSet.h"
 
@@ -17,7 +16,6 @@ struct FBequestDamageCapture
 	FBequestDamageCapture()
 	{
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestLifeAttributeSet, FinalLifeDamage, Source, false);
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestArmorAttributeSet, FinalArmorDamage, Source, false);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UBequestGuardAttributeSet, FinalGuardDamage, Source, false);
 	}
 };
@@ -54,11 +52,11 @@ void UGEExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecu
 			Damage = TagMagnitude.Value;
 			DamageType = GetDamageCapture().FinalLifeDamageProperty;
 		}
-		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Armor))
-		{
-			Damage = TagMagnitude.Value;
-			DamageType = GetDamageCapture().FinalArmorDamageProperty;
-		}
+		// if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Armor))
+		// {
+		// 	Damage = TagMagnitude.Value;
+		// 	DamageType = GetDamageCapture().FinalArmorDamageProperty;
+		// }
 		if (TagMagnitude.Key.MatchesTagExact(BequestGameplayTags::Character_SetByCaller_Damage_Guard))
 		{
 			Damage = TagMagnitude.Value;
